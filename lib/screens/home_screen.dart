@@ -11,7 +11,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Home Screen"),
-        elevation: 0,
+        elevation: 0.0,
       ),
       body: BlocBuilder<SwitchCubit, SwitchState>(
         builder: (context, state) {
