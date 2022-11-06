@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
           return Center(
             child: Container(
               height: 50,
-              width: 50,
+              width: 70,
               color: customPrimaryColorLight,
             )
           );
