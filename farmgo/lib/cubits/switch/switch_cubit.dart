@@ -4,7 +4,7 @@ import 'package:meta/meta.dart';
 part 'switch_state.dart';
 
 class SwitchCubit extends Cubit<SwitchState> {
-  SwitchCubit() : super(SwitchState(flag: true));
+  SwitchCubit() : super(SwitchState(flag: false));
   void toggleSwicth() {
     if (state.flag == false) {
       emit(SwitchState(flag: true));
