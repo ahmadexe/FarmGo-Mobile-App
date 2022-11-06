@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "343870592825",
+    "project_id": "farmgo-1b78e",
+    "storage_bucket": "farmgo-1b78e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:343870592825:android:86770bd633cfd877343ae8",
+        "android_client_info": {
+          "package_name": "com.example.farmgo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "343870592825-hr35j3nj3pco02q8mm7i1aofd4g6fukt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKwkhOOMU1Bkm5ropP_EO58JyQgEOEoJs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "343870592825-hr35j3nj3pco02q8mm7i1aofd4g6fukt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
