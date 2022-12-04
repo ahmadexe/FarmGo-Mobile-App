@@ -25,8 +25,8 @@ class HomeScreen extends StatelessWidget {
                 width: 70,
                 color: customPrimaryColorLight,
               ),
-              ElevatedButton(onPressed: () {}, child: Text("Ads")),
-              SizedBox(height: 30),
+              ElevatedButton(onPressed: () {}, child: const Text("Ads")),
+              const SizedBox(height: 30),
               Text(
                 "HEllo",
                 style: app.text.h1
