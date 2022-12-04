@@ -1,4 +1,4 @@
-import 'package:farmgo/constants/custom_colors.dart';
+import 'package:farmgo/configs/custom_colors.dart';
 import 'package:flutter/material.dart';
 
 enum AppThemes { dark, light }
