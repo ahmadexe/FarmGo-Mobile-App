@@ -51,6 +51,10 @@ dependencies:
   # Provider State management
   provider: ^6.0.4
 
+  # Forms
+  flutter_form_builder: ^7.7.0
+  form_builder_validators: ^8.4.0
+
 
 dev_dependencies:
   flutter_test:

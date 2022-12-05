@@ -3,6 +3,7 @@ import 'package:farmgo/firebase_options.dart';
 import 'package:farmgo/global/themes.dart';
 import 'package:farmgo/providers/app_provider.dart';
 import 'package:farmgo/screens/home_screen.dart';
+import 'package:farmgo/screens/login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,12 +28,11 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AppProvider())
       ],
       child: BlocBuilder<SwitchCubit, SwitchState>(
-        
         builder: (context, state) {
           AppProvider app = AppProvider.state(context);
           app.init();
           return MaterialApp(
-            home: const HomeScreen(),
+            home: const LoginScreen(),
             theme: state.flag? appThemeData[AppThemes.dark] : appThemeData[AppThemes.light],
           );
         },
