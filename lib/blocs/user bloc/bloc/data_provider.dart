@@ -9,7 +9,7 @@ class UserDataProvider {
   static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   static Future<String> signup(String username, String contact, String name,
       String email, String password, bool isInvestor) async {
-    String msg = "Sign up failed.";
+    String msg = AppConstants.defaultErrorMessage;
     try {
       UserCredential credentials = await _auth.createUserWithEmailAndPassword(
         email: email,

@@ -1,5 +1,6 @@
 class AppConstants {
   static const double toolbarHeightDefault = 130;
+  static const String defaultErrorMessage = "An error has occured";
   static const String success = "success";
   static const String weakPassword = "Password is too weak, please use a stronger password.";
   static const String emailInUse = "Email is already in use. Please provide a valid email.";
