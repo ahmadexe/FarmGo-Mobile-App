@@ -4,6 +4,7 @@ import 'package:farmgo/global/themes.dart';
 import 'package:farmgo/providers/app_provider.dart';
 import 'package:farmgo/screens/home_screen.dart';
 import 'package:farmgo/screens/login_screen.dart';
+import 'package:farmgo/screens/provide_info_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
           AppProvider app = AppProvider.state(context);
           app.init();
           return MaterialApp(
-            home: const LoginScreen(),
+            home: const ProvideInfoScreen(),
             theme: state.flag? appThemeData[AppThemes.dark] : appThemeData[AppThemes.light],
           );
         },
