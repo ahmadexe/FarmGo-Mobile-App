@@ -15,6 +15,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     AppProvider app = AppProvider.state(context);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         toolbarHeight: AppConstants.toolbarHeightDefault,
         elevation: 0,

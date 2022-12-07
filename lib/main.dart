@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
           AppProvider app = AppProvider.state(context);
           app.init();
           return MaterialApp(
-            home: const ProvideInfoScreen(),
+            home: const LoginScreen(),
             theme: state.flag? appThemeData[AppThemes.dark] : appThemeData[AppThemes.light],
           );
         },
