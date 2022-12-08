@@ -132,7 +132,11 @@ class ProvideInfoScreen extends StatelessWidget {
                     child: ElevatedButton(
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (_) => const SignupScreen()));
+                              builder: (_) => SignupScreen(
+                                fullname: _infoFormKey.currentState!.fields['fullname']!.value.toString().trim(),
+                                username: _infoFormKey.currentState!.fields['username']!.value.toString().trim(),
+                                contact: _infoFormKey.currentState!.fields['contact']!.value.toString().trim(),
+                              )));
                         },
                         child: const Text("Next")),
                   ),

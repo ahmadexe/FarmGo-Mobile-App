@@ -1,10 +1,11 @@
+import 'package:farmgo/blocs/user%20bloc/bloc/user_bloc.dart';
+import 'package:farmgo/blocs/user%20bloc/bloc/user_state.dart';
 import 'package:farmgo/cubits/switch/switch_cubit.dart';
 import 'package:farmgo/firebase_options.dart';
 import 'package:farmgo/global/themes.dart';
 import 'package:farmgo/providers/app_provider.dart';
 import 'package:farmgo/screens/home_screen.dart';
 import 'package:farmgo/screens/login_screen.dart';
-import 'package:farmgo/screens/provide_info_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,17 +26,25 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        BlocProvider( create: (_) => SwitchCubit()),
-        ChangeNotifierProvider(create: (_) => AppProvider())
+        BlocProvider(create: (_) => UserBloc()),
+        BlocProvider(create: (_) => SwitchCubit()),
+        ChangeNotifierProvider(create: (_) => AppProvider()),
       ],
       child: BlocBuilder<SwitchCubit, SwitchState>(
-        builder: (context, state) {
+        builder: (context, switchState) {
           AppProvider app = AppProvider.state(context);
           app.init();
-          return MaterialApp(
-            home: const LoginScreen(),
-            theme: state.flag? appThemeData[AppThemes.dark] : appThemeData[AppThemes.light],
-          );
+          return BlocBuilder<UserBloc, UserState>(
+              builder: (context, authState) {
+            return MaterialApp(
+              home: authState.data == null? const LoginScreen() : authState.data!.isLoggedIn
+                  ? const HomeScreen()
+                  : const LoginScreen(),
+              theme: switchState.flag
+                  ? appThemeData[AppThemes.dark]
+                  : appThemeData[AppThemes.light],
+            );
+          });
         },
       ),
     );

@@ -19,4 +19,12 @@ class AppProvider extends ChangeNotifier {
 
     notifyListeners();
   }
+
+  bool isInvestor = false;
+  setIsInvestor(bool value) {
+    isInvestor = value;
+
+    notifyListeners();
+  }
+
 }
