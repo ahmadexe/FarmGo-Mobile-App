@@ -6,6 +6,7 @@ import 'package:farmgo/global/themes.dart';
 import 'package:farmgo/providers/app_provider.dart';
 import 'package:farmgo/screens/home_screen.dart';
 import 'package:farmgo/screens/login_screen.dart';
+import 'package:farmgo/utils/mobile_layout_utils.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
               builder: (context, authState) {
             return MaterialApp(
               home: authState.data == null? const LoginScreen() : authState.data!.isLoggedIn
-                  ? const HomeScreen()
+                  ? const MobileLayoutUtils()
                   : const LoginScreen(),
               theme: switchState.flag
                   ? appThemeData[AppThemes.dark]
