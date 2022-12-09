@@ -22,7 +22,7 @@ class LoginAddTile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(height: 30, width: 30,child: Image.asset(imagePath, fit: BoxFit.fitHeight,)),
+              SizedBox(height: 30, width: 30,child: Image.asset(imagePath, fit: BoxFit.fitHeight,)),
               Text(text, style: app.text.t2.copyWith(color: gotoTextColorLight)),
             ],
           ),

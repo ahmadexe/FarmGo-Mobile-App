@@ -38,9 +38,10 @@ class MyApp extends StatelessWidget {
           return BlocBuilder<UserBloc, UserState>(
               builder: (context, authState) {
             return MaterialApp(
-              home: authState.data == null? const LoginScreen() : authState.data!.isLoggedIn
-                  ? const MobileLayoutUtils()
-                  : const LoginScreen(),
+              // home: authState.data == null? const LoginScreen() : authState.data!.isLoggedIn
+              //     ? const MobileLayoutUtils()
+              //     : const LoginScreen(),
+              home: MobileLayoutUtils(),
               theme: switchState.flag
                   ? appThemeData[AppThemes.dark]
                   : appThemeData[AppThemes.light],

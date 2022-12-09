@@ -1,6 +1,5 @@
 import 'package:farmgo/configs/defined_colors.dart';
 import 'package:farmgo/providers/app_provider.dart';
-import 'package:farmgo/screens/home_screen.dart';
 import 'package:farmgo/screens/provide_info_screen.dart';
 import 'package:farmgo/static/constants.dart';
 import 'package:flutter/material.dart';

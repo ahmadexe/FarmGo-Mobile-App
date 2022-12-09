@@ -5,7 +5,6 @@ import 'package:farmgo/blocs/user%20bloc/bloc/user_state.dart';
 import 'package:farmgo/models/user_model.dart';
 import 'package:farmgo/static/constants.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:flutter/material.dart';
 
 part 'user_event.dart';
 
