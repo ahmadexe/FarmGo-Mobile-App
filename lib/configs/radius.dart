@@ -1,6 +1,6 @@
 class AppRadius {
-  late int lightCurve;
-  late int heavyCurve;
+  late double lightCurve;
+  late double heavyCurve;
 
   init() {
     lightCurve = 10;

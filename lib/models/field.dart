@@ -7,13 +7,18 @@ class Field {
   final double longitude;
   final String ownerName;
   final String ownerId; 
+  final String imgUrl;
+  final String address;
   Field({
     required this.fieldName,
     required this.latitude,
     required this.longitude,
     required this.ownerName,
     required this.ownerId,
+    required this.imgUrl,
+    required this.address,
   });
+  
 
   Field copyWith({
     String? fieldName,
@@ -21,6 +26,8 @@ class Field {
     double? longitude,
     String? ownerName,
     String? ownerId,
+    String? imgUrl,
+    String? address,
   }) {
     return Field(
       fieldName: fieldName ?? this.fieldName,
@@ -28,6 +35,8 @@ class Field {
       longitude: longitude ?? this.longitude,
       ownerName: ownerName ?? this.ownerName,
       ownerId: ownerId ?? this.ownerId,
+      imgUrl: imgUrl ?? this.imgUrl,
+      address: address ?? this.address,
     );
   }
 
@@ -38,6 +47,8 @@ class Field {
       'longitude': longitude,
       'ownerName': ownerName,
       'ownerId': ownerId,
+      'imgUrl': imgUrl,
+      'address': address,
     };
   }
 
@@ -48,6 +59,8 @@ class Field {
       longitude: map['longitude'] as double,
       ownerName: map['ownerName'] as String,
       ownerId: map['ownerId'] as String,
+      imgUrl: map['imgUrl'] as String,
+      address: map['address'] as String,
     );
   }
 
@@ -57,7 +70,7 @@ class Field {
 
   @override
   String toString() {
-    return 'Field(fieldName: $fieldName, latitude: $latitude, longitude: $longitude, ownerName: $ownerName, ownerId: $ownerId)';
+    return 'Field(fieldName: $fieldName, latitude: $latitude, longitude: $longitude, ownerName: $ownerName, ownerId: $ownerId, imgUrl: $imgUrl, address: $address)';
   }
 
   @override
@@ -69,7 +82,9 @@ class Field {
       other.latitude == latitude &&
       other.longitude == longitude &&
       other.ownerName == ownerName &&
-      other.ownerId == ownerId;
+      other.ownerId == ownerId &&
+      other.imgUrl == imgUrl &&
+      other.address == address;
   }
 
   @override
@@ -78,6 +93,8 @@ class Field {
       latitude.hashCode ^
       longitude.hashCode ^
       ownerName.hashCode ^
-      ownerId.hashCode;
+      ownerId.hashCode ^
+      imgUrl.hashCode ^
+      address.hashCode;
   }
 }
