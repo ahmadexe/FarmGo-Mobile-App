@@ -59,30 +59,31 @@ class _MobileLayoutUtilsState extends State<MobileLayoutUtils> {
         ],
       ),
       bottomNavigationBar: CupertinoTabBar(
-        backgroundColor: customPrimaryColorLight,
+        height: 50,
+        backgroundColor: fieldContrastDark,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: _page == 0? gotoTextColorDark : textColorGrey),
+            icon: Icon(Icons.home, color: _page == 0? greenColorSecondary : textColorGrey),
             label: "",
             backgroundColor: customPrimaryColorLight,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart, color: _page == 1? gotoTextColorDark : textColorGrey),
+            icon: Icon(Icons.shopping_cart, color: _page == 1? greenColorSecondary : textColorGrey),
             label: "",
             backgroundColor: customPrimaryColorLight,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.camera_alt, color: _page == 2? gotoTextColorDark : textColorGrey),
+            icon: Icon(Icons.camera_alt, color: _page == 2? greenColorSecondary : textColorGrey),
             label: "",
             backgroundColor: customPrimaryColorLight,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.cloudy_snowing, color: _page == 3? gotoTextColorDark : textColorGrey),
+            icon: Icon(Icons.cloudy_snowing, color: _page == 3? greenColorSecondary : textColorGrey),
             label: "",
             backgroundColor: customPrimaryColorLight,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person, color: _page == 4? gotoTextColorDark : textColorGrey),
+            icon: Icon(Icons.person, color: _page == 4? greenColorSecondary : textColorGrey),
             label: "",
             backgroundColor: customPrimaryColorLight,
           ),

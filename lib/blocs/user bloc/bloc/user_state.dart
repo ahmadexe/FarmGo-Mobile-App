@@ -41,3 +41,7 @@ class UserSignupSuccess extends UserState {
 class UserSignupFailed extends UserState {
     const UserSignupFailed({String? message}): super(message: message);
 }
+
+
+
+

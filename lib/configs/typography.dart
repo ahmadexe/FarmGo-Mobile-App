@@ -44,8 +44,8 @@ class AppText {
     t1b = base.copyWith(fontSize: 16, fontWeight: FontWeight.bold);
     t2b = base.copyWith(fontSize: 14, fontWeight: FontWeight.bold);
 
-    t1b = base.copyWith(fontSize: 16, fontWeight: FontWeight.w500);
-    t2b = base.copyWith(fontSize: 14, fontWeight: FontWeight.w500);
+    t1sb = base.copyWith(fontSize: 16, fontWeight: FontWeight.w500);
+    t2sb = base.copyWith(fontSize: 14, fontWeight: FontWeight.w500);
 
     hll = base.copyWith(
         fontSize: 16,
