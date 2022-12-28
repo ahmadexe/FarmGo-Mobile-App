@@ -52,7 +52,7 @@ class HomeScreen extends StatelessWidget {
                     Text("Fields Around you", style: app.text.h2),
                     Row(
                       children: [
-                        Text("Explore ", style: app.text.t1sb),
+                        Text("Explore ", style: app.text.t2),
                         const Icon(
                           Icons.arrow_forward_ios_rounded,
                           size: 12,
@@ -75,7 +75,27 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(height: app.space.y2),
                 Text("Global Village", style: app.text.h2),
                 SizedBox(height: app.space.y4),
-                GlobalVillageCard(),
+                const GlobalVillageCard(),
+                SizedBox(height: app.space.y2),
+                Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("News", style: app.text.h2),
+                        Row(
+                          children: [
+                            Text("See More ", style: app.text.t2),
+                            const Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              size: 12,
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ],
             ),
           ),

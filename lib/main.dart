@@ -4,8 +4,6 @@ import 'package:farmgo/cubits/switch/switch_cubit.dart';
 import 'package:farmgo/firebase_options.dart';
 import 'package:farmgo/global/themes.dart';
 import 'package:farmgo/providers/app_provider.dart';
-import 'package:farmgo/screens/home_screen.dart';
-import 'package:farmgo/screens/login_screen.dart';
 import 'package:farmgo/utils/mobile_layout_utils.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +39,7 @@ class MyApp extends StatelessWidget {
               // home: authState.data == null? const LoginScreen() : authState.data!.isLoggedIn
               //     ? const MobileLayoutUtils()
               //     : const LoginScreen(),
-              home: MobileLayoutUtils(),
+              home: const MobileLayoutUtils(),
               theme: switchState.flag
                   ? appThemeData[AppThemes.dark]
                   : appThemeData[AppThemes.light],
