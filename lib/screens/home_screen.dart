@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../static/constants.dart';
 import '../utils/dummy_data.dart';
 import '../widgets/field_card.dart';
+import '../widgets/global_village_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -74,7 +75,7 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(height: app.space.y2),
                 Text("Global Village", style: app.text.h2),
                 SizedBox(height: app.space.y4),
-                
+                GlobalVillageCard(),
               ],
             ),
           ),
