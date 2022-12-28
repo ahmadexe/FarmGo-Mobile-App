@@ -48,6 +48,7 @@ class _MobileLayoutUtilsState extends State<MobileLayoutUtils> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
+        physics: const NeverScrollableScrollPhysics(),
         controller: _pageController,
         onPageChanged: onPageChanged,
         children: const [

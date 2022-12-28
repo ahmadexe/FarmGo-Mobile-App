@@ -1,4 +1,5 @@
 import 'package:farmgo/configs/custom_colors.dart';
+import 'package:farmgo/configs/defined_colors.dart';
 import 'package:farmgo/models/field.dart';
 import 'package:farmgo/providers/app_provider.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +46,7 @@ class FieldCard extends StatelessWidget {
             ),
             Expanded(
               child: Text(field.address,
-                  style: app.text.t2,
+                  style: app.text.t2.copyWith(color: textColorGrey),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis),
             ),
