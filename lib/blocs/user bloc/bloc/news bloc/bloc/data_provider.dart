@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:farmgo/static/api%20constants/keys.dart';
+import 'package:farmgo/static/keys/keys.dart';
 import 'package:http/http.dart' as http;
 
 class NewsDataProvider {
