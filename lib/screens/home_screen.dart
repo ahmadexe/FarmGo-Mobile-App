@@ -9,6 +9,7 @@ import '../static/constants.dart';
 import '../utils/dummy_data.dart';
 import '../widgets/field_card.dart';
 import '../widgets/global_village_card.dart';
+import '../widgets/news_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -28,7 +29,7 @@ class HomeScreen extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Hey there!", style: app.text.h2),
+                    Text("Hey there!", style: app.text.h3),
                     Text("Ahmad", style: app.text.h1)
                   ],
                 ),
@@ -41,62 +42,69 @@ class HomeScreen extends StatelessWidget {
           ),
           body: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const YourLocationTile(),
-                SizedBox(height: app.space.y2),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Fields Around you", style: app.text.h2),
-                    Row(
-                      children: [
-                        Text("Explore ", style: app.text.t2),
-                        const Icon(
-                          Icons.arrow_forward_ios_rounded,
-                          size: 12,
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-                SizedBox(height: app.space.y4),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Wrap(
-                    spacing: app.space.x2,
-                    children: List.generate(
-                      3,
-                      (index) => FieldCard(field: DummyData.fields[index]),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const YourLocationTile(),
+                  SizedBox(height: app.space.y2),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Fields Around you", style: app.text.h2),
+                      Row(
+                        children: [
+                          Text("Explore ", style: app.text.t2),
+                          const Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            size: 12,
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: app.space.y4),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Wrap(
+                      spacing: app.space.x2,
+                      children: List.generate(
+                        3,
+                        (index) => FieldCard(field: DummyData.fields[index]),
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(height: app.space.y2),
-                Text("Global Village", style: app.text.h2),
-                SizedBox(height: app.space.y4),
-                const GlobalVillageCard(),
-                SizedBox(height: app.space.y2),
-                Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("News", style: app.text.h2),
-                        Row(
-                          children: [
-                            Text("See More ", style: app.text.t2),
-                            const Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              size: 12,
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
+                  SizedBox(height: app.space.y2),
+                  Text("Global Village", style: app.text.h2),
+                  SizedBox(height: app.space.y4),
+                  const GlobalVillageCard(),
+                  SizedBox(height: app.space.y2),
+                  Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("News", style: app.text.h2),
+                          Row(
+                            children: [
+                              Text("See More ", style: app.text.t2),
+                              const Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                size: 12,
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: app.space.y4),
+                      NewsCard(isMain: true),
+                      SizedBox(height: app.space.y4),
+                      NewsCard(),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         );
