@@ -59,6 +59,7 @@ dependencies:
   # UI
   awesome_snackbar_content: ^0.1.0
   flutter_svg: ^1.1.6
+  http: ^0.13.5
   
 
 
