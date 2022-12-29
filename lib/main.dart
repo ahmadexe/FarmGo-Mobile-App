@@ -1,3 +1,4 @@
+import 'package:farmgo/blocs/news%20bloc/bloc/news_bloc.dart';
 import 'package:farmgo/blocs/user%20bloc/bloc/user_bloc.dart';
 import 'package:farmgo/blocs/user%20bloc/bloc/user_state.dart';
 import 'package:farmgo/cubits/switch/switch_cubit.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (_) => UserBloc()),
         BlocProvider(create: (_) => SwitchCubit()),
+        BlocProvider(create: (_) => NewsBloc()),
         ChangeNotifierProvider(create: (_) => AppProvider()),
       ],
       child: BlocBuilder<SwitchCubit, SwitchState>(

@@ -1,3 +1,4 @@
+import 'package:farmgo/blocs/news%20bloc/bloc/news_bloc.dart';
 import 'package:farmgo/blocs/user%20bloc/bloc/user_bloc.dart';
 import 'package:farmgo/blocs/user%20bloc/bloc/user_state.dart';
 import 'package:farmgo/providers/app_provider.dart';
@@ -5,14 +6,26 @@ import 'package:farmgo/widgets/your_location_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../models/article.dart';
 import '../static/constants.dart';
 import '../utils/dummy_data.dart';
 import '../widgets/field_card.dart';
 import '../widgets/global_village_card.dart';
 import '../widgets/news_card.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<NewsBloc>(context).add(FetchNews());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +101,9 @@ class HomeScreen extends StatelessWidget {
                           Text("News", style: app.text.h2),
                           Row(
                             children: [
-                              Text("See More ", style: app.text.t2),
+                              GestureDetector(
+                                  onTap: () {},
+                                  child: Text("See More ", style: app.text.t2)),
                               const Icon(
                                 Icons.arrow_forward_ios_rounded,
                                 size: 12,
@@ -98,9 +113,27 @@ class HomeScreen extends StatelessWidget {
                         ],
                       ),
                       SizedBox(height: app.space.y4),
-                      NewsCard(isMain: true),
-                      SizedBox(height: app.space.y4),
-                      NewsCard(),
+                      BlocBuilder<NewsBloc, NewsState>(
+                        builder: (context, newsState) {
+                          if (newsState is NewsFetchLoading) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          } else if (newsState is NewsFetchSuccess) {
+                            return ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: 3,
+                              itemBuilder: (context, index) {
+                                return NewsCard(
+                                    article: newsState.data![index]);
+                              },
+                            );
+                          } else {
+                            return const SizedBox();
+                          }
+                        },
+                      ),
                     ],
                   ),
                 ],
