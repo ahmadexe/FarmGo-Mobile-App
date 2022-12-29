@@ -1,4 +1,4 @@
-import 'package:farmgo/blocs/user%20bloc/bloc/news%20bloc/bloc/data_provider.dart';
+import 'package:farmgo/blocs/news%20bloc/bloc/data_provider.dart';
 import 'package:farmgo/models/article.dart';
 
 class NewsRepository {

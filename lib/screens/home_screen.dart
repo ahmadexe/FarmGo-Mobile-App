@@ -1,5 +1,3 @@
-import 'package:farmgo/blocs/user%20bloc/bloc/news%20bloc/bloc/data_provider.dart';
-import 'package:farmgo/blocs/user%20bloc/bloc/news%20bloc/bloc/repository.dart';
 import 'package:farmgo/blocs/user%20bloc/bloc/user_bloc.dart';
 import 'package:farmgo/blocs/user%20bloc/bloc/user_state.dart';
 import 'package:farmgo/providers/app_provider.dart';
@@ -17,7 +15,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    NewsRepository().getArticles();
     AppProvider app = AppProvider.state(context);
     return BlocBuilder<UserBloc, UserState>(
       builder: (context, state) {
