@@ -65,6 +65,7 @@ dependencies:
 
   # Others
   cached_network_image: ^3.2.3
+  url_launcher: ^6.1.7
   
 
 
