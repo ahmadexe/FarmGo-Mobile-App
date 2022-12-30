@@ -6,8 +6,6 @@ import 'package:farmgo/screens/news_screen.dart';
 import 'package:farmgo/widgets/your_location_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../models/article.dart';
 import '../static/constants.dart';
 import '../utils/dummy_data.dart';
 import '../widgets/field_card.dart';

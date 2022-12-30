@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../configs/custom_colors.dart';
 import '../configs/defined_colors.dart';
+import '../utils/url_utils.dart';
 
 class NewsCard extends StatelessWidget {
   final bool isMain;
@@ -42,19 +43,24 @@ class NewsCard extends StatelessWidget {
                   ),
                   SizedBox(height: app.space.y4),
                   Expanded(
-                    child: Row(
-                      children: [
-                        Expanded(
-                          flex: 16,
-                          child: Text(article.title!,
-                              style: app.text.t1b,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis),
-                        ),
-                        const Expanded(
-                          child: Icon(Icons.arrow_forward, size: 15),
-                        ),
-                      ],
+                    child: GestureDetector(
+                      onTap: () {
+                        UrlUtils.launchTheUrl(article.url!);
+                      },
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex: 16,
+                            child: Text(article.title!,
+                                style: app.text.t1b,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis),
+                          ),
+                          const Expanded(
+                            child: Icon(Icons.arrow_forward, size: 15),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Expanded(
@@ -68,40 +74,45 @@ class NewsCard extends StatelessWidget {
             )
           : Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: SizedBox(
-                        height: double.infinity,
-                        child: CachedNetworkImage(
-                          imageUrl: article.urlToImage!,
-                          fit: BoxFit.fill,
-                        )),
-                  ),
-                  SizedBox(width: app.space.x2),
-                  Expanded(
-                    flex: 3,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(article.title!,
-                            style: app.text.t1b,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis),
-                        SizedBox(
-                          width: 300,
-                          height: 60,
-                          child: Text(article.description!,
-                              style: app.text.t2.copyWith(color: textColorGrey),
-                              maxLines: 3,
-                              overflow: TextOverflow.ellipsis),
-                        ),
-                      ],
+              child: GestureDetector(
+                onTap: (){
+                  UrlUtils.launchTheUrl(article.url!);
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: SizedBox(
+                          height: double.infinity,
+                          child: CachedNetworkImage(
+                            imageUrl: article.urlToImage!,
+                            fit: BoxFit.fill,
+                          )),
                     ),
-                  ),
-                ],
+                    SizedBox(width: app.space.x2),
+                    Expanded(
+                      flex: 3,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(article.title!,
+                              style: app.text.t1b,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis),
+                          SizedBox(
+                            width: 300,
+                            height: 60,
+                            child: Text(article.description!,
+                                style: app.text.t2.copyWith(color: textColorGrey),
+                                maxLines: 3,
+                                overflow: TextOverflow.ellipsis),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
     );
