@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:farmgo/models/article.dart';
 import 'package:farmgo/providers/app_provider.dart';
 import 'package:flutter/material.dart';
@@ -24,36 +25,45 @@ class NewsCard extends StatelessWidget {
           borderRadius:
               BorderRadius.all(Radius.circular(app.radius.lightCurve))),
       child: isMain
-          ? Container(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      flex: 10,
-                      child: SizedBox(
-                          width: double.infinity,
-                          child: Image.network(
-                            article.urlToImage!,
-                            fit: BoxFit.fill,
-                          )),
+          ? Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    flex: 8,
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: CachedNetworkImage(
+                        imageUrl: article.urlToImage!,
+                        fit: BoxFit.fill,
+                      ),
                     ),
-                    SizedBox(height: app.space.y4),
-                    Expanded(
-                        child: Text(article.title!,
-                            style: app.text.t1b,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis)),
-                    SizedBox(
-                      child: Expanded(
-                          child: Text(article.description!,
-                              style: app.text.t2.copyWith(color: textColorGrey),
-                              maxLines: 4,
-                              overflow: TextOverflow.ellipsis)),
-                    )
-                  ],
-                ),
+                  ),
+                  SizedBox(height: app.space.y4),
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 16,
+                          child: Text(article.title!,
+                              style: app.text.t1b,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis),
+                        ),
+                        const Expanded(
+                          child: Icon(Icons.arrow_forward, size: 15),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Text(article.description!,
+                        style: app.text.t2.copyWith(color: textColorGrey),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis),
+                  )
+                ],
               ),
             )
           : Padding(
@@ -64,8 +74,8 @@ class NewsCard extends StatelessWidget {
                   Expanded(
                     child: SizedBox(
                         height: double.infinity,
-                        child: Image.network(
-                          article.urlToImage!,
+                        child: CachedNetworkImage(
+                          imageUrl: article.urlToImage!,
                           fit: BoxFit.fill,
                         )),
                   ),

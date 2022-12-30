@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:farmgo/configs/custom_colors.dart';
 import 'package:farmgo/configs/defined_colors.dart';
 import 'package:farmgo/models/field.dart';
@@ -32,8 +33,8 @@ class FieldCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius:
                     BorderRadius.all(Radius.circular(app.radius.lightCurve)),
-                child: Image.network(
-                  field.imgUrl,
+                child: CachedNetworkImage(
+                  imageUrl: field.imgUrl,
                   fit: BoxFit.fill,
                 ),
               ),

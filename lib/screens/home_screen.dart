@@ -2,6 +2,7 @@ import 'package:farmgo/blocs/news%20bloc/bloc/news_bloc.dart';
 import 'package:farmgo/blocs/user%20bloc/bloc/user_bloc.dart';
 import 'package:farmgo/blocs/user%20bloc/bloc/user_state.dart';
 import 'package:farmgo/providers/app_provider.dart';
+import 'package:farmgo/screens/news_screen.dart';
 import 'package:farmgo/widgets/your_location_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -102,7 +103,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           Row(
                             children: [
                               GestureDetector(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (_) =>
+                                                const NewsScreen()));
+                                  },
                                   child: Text("See More ", style: app.text.t2)),
                               const Icon(
                                 Icons.arrow_forward_ios_rounded,
