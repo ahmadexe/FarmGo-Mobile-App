@@ -62,10 +62,12 @@ dependencies:
 
   # API Layer
   http: ^0.13.5
+  google_maps_flutter: ^2.2.2
 
   # Others
   cached_network_image: ^3.2.3
   url_launcher: ^6.1.7
+  flutter_map: ^3.1.0
   
 
 
