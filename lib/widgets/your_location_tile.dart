@@ -12,7 +12,7 @@ class YourLocationTile extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(
-          MaterialPageRoute(builder: (_) => const MapsScreen())
+          MaterialPageRoute(builder: (_) => MapsScreen())
         );
       },
       child: ClipRRect(

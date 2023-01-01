@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:farmgo/providers/app_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -20,20 +21,24 @@ class MapDataState extends State<MapData> {
   );
 
   static const CameraPosition _kLake = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(37.43296265331129, -122.08832357078792),
-      tilt: 59.440717697143555,
+      bearing: 210.8334901395799,
+      target: LatLng(33.651592, 73.156456),
+      tilt: 70.440717697143555,
       zoom: 19.151926040649414);
 
   @override
   Widget build(BuildContext context) {
+    AppProvider app = AppProvider.state(context);
     return Scaffold(
-      body: GoogleMap(
-        mapType: MapType.hybrid,
-        initialCameraPosition: _kGooglePlex,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
+      body: ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(app.radius.lightCurve)),
+        child: GoogleMap(
+                mapType: MapType.normal,
+                initialCameraPosition: _kGooglePlex,
+                onMapCreated: (GoogleMapController controller) {
+                  _controller.complete(controller);
+                },
+              ),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _goToTheLake,

@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       spacing: app.space.x2,
                       children: List.generate(
                         3,
-                        (index) => FieldCard(field: DummyData.fields[index]),
+                        (index) => FieldCard(onPressed: (){},field: DummyData.fields[index]),
                       ),
                     ),
                   ),
