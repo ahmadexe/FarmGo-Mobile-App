@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../configs/defined_colors.dart';
+import '../utils/dummy_data.dart';
+import '../widgets/field_card.dart';
 import '../widgets/map_data.dart';
 
 class MapsScreen extends StatelessWidget {
@@ -29,7 +31,7 @@ class MapsScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.5,
+                  height: MediaQuery.of(context).size.height * 0.45,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(
@@ -95,9 +97,22 @@ class MapsScreen extends StatelessWidget {
                   ),
                 ),
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: app.space.y2),
                     Text("Fields", style: app.text.h2),
+                    SizedBox(height: app.space.y4),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Wrap(
+                        spacing: app.space.x2,
+                        children: List.generate(
+                          3,
+                          (index) => FieldCard(
+                              onPressed: () {}, field: DummyData.fields[index]),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ],

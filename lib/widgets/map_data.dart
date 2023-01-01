@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:farmgo/configs/defined_colors.dart';
 import 'package:farmgo/providers/app_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -33,17 +34,24 @@ class MapDataState extends State<MapData> {
       body: ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(app.radius.lightCurve)),
         child: GoogleMap(
-                mapType: MapType.normal,
-                initialCameraPosition: _kGooglePlex,
-                onMapCreated: (GoogleMapController controller) {
-                  _controller.complete(controller);
-                },
-              ),
+          mapType: MapType.normal,
+          initialCameraPosition: _kGooglePlex,
+          onMapCreated: (GoogleMapController controller) {
+            _controller.complete(controller);
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: fieldContrastDark,
         onPressed: _goToTheLake,
-        label: const Text('To the lake!'),
-        icon: const Icon(Icons.directions_boat),
+        label: Text(
+          'To the lake!',
+          style: app.text.t2.copyWith(color: textColorGrey),
+        ),
+        icon: const Icon(
+          Icons.directions_boat,
+          color: Colors.white,
+        ),
       ),
     );
   }
