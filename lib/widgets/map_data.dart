@@ -1,9 +1,10 @@
 import 'dart:async';
 
-import 'package:farmgo/configs/defined_colors.dart';
 import 'package:farmgo/providers/app_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import '../configs/defined_colors.dart';
 
 class MapData extends StatefulWidget {
   const MapData({Key? key}) : super(key: key);

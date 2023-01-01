@@ -27,4 +27,11 @@ class AppProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // Map Indices
+  int mapTabIndex = 0;
+  void setMapTabIndex(int value) {
+    mapTabIndex = value;
+
+    notifyListeners();
+  }
 }
