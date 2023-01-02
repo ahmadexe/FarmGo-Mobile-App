@@ -89,7 +89,7 @@ class MapsScreen extends StatelessWidget {
                                   color: textColorGrey,
                                 ),
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
