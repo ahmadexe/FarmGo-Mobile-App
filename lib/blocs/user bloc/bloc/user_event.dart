@@ -36,6 +36,6 @@ class UserLogin extends UserEvent {
   });
 }
 
-class UserLogout extends UserEvent {
+class UserLogout extends UserEvent {}
 
-}
+class CheckAuthStatus extends UserEvent {}

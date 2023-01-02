@@ -9,13 +9,19 @@ import 'package:farmgo/utils/mobile_layout_utils.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+
+import 'screens/login_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  HydratedBloc.storage = await HydratedStorage.build(
+      storageDirectory: await getApplicationDocumentsDirectory());
   runApp(const MyApp());
 }
 
@@ -38,10 +44,11 @@ class MyApp extends StatelessWidget {
           return BlocBuilder<UserBloc, UserState>(
               builder: (context, authState) {
             return MaterialApp(
-              // home: authState.data == null? const LoginScreen() : authState.data!.isLoggedIn
-              //     ? const MobileLayoutUtils()
-              //     : const LoginScreen(),
-              home: const MobileLayoutUtils(),
+              home: authState.data == null
+                  ? const LoginScreen()
+                  : authState.data!.isLoggedIn
+                      ? const MobileLayoutUtils()
+                      : const LoginScreen(),
               theme: switchState.flag
                   ? appThemeData[AppThemes.dark]
                   : appThemeData[AppThemes.light],

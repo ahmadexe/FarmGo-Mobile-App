@@ -4,11 +4,12 @@ import 'package:farmgo/blocs/user%20bloc/bloc/repository.dart';
 import 'package:farmgo/blocs/user%20bloc/bloc/user_state.dart';
 import 'package:farmgo/models/user_model.dart';
 import 'package:farmgo/static/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 part 'user_event.dart';
 
-class UserBloc extends Bloc<UserEvent, UserState> {
+class UserBloc extends HydratedBloc<UserEvent, UserState> {
   UserBloc() : super(UserDefault()) {
     on<UserLogin>(_loginUser);
     on<UserSignup>(_signupUser);
@@ -16,22 +17,20 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
   UserRepository repo = UserRepository();
 
-  _loginUser(UserLogin event, Emitter<UserState> emit) async {
+  void _loginUser(UserLogin event, Emitter<UserState> emit) async {
+    emit(const UserLoginLoading());
     try {
-      emit(const UserLoginLoading());
-      dynamic response =
+      User response =
           await repo.login(event.email, event.password, event.isInvestor);
-      if (response == null) {
-        emit(const UserLoginFailed(message: AppConstants.defaultErrorMessage));
-      } else if (response is UserModel) {
-        emit(UserLoginSuccess(data: response));
-      }
+      UserModel user =
+          await repo.getUserDetails(event.isInvestor, response.uid);
+      emit(UserLoginSuccess(data: user));
     } catch (e) {
       emit(const UserLoginFailed(message: AppConstants.defaultErrorMessage));
     }
   }
 
-  _signupUser(UserSignup event, Emitter<UserState> emit) async {
+  void _signupUser(UserSignup event, Emitter<UserState> emit) async {
     try {
       emit(const UserSignupLoading());
       String response = await repo.signup(event.username, event.contact,
@@ -45,5 +44,15 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     } catch (e) {
       emit(const UserSignupFailed(message: AppConstants.defaultErrorMessage));
     }
+  }
+  
+  @override
+  UserState? fromJson(Map<String, dynamic> json) {
+    return UserState.fromMap(json);
+  }
+  
+  @override
+  Map<String, dynamic>? toJson(UserState state) {
+    return state.toMap();
   }
 }

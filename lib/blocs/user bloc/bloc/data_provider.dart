@@ -7,6 +7,7 @@ import '../../../utils/firebase_utils.dart';
 class UserDataProvider {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
   static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  
   static Future<String> signup(String username, String contact, String name,
       String email, String password, bool isInvestor) async {
     String msg = AppConstants.defaultErrorMessage;
@@ -39,36 +40,41 @@ class UserDataProvider {
     return msg;
   }
 
-  static Future<dynamic> login(
+  static Future<User> login(
       String email, String password, bool isInvestor) async {
     try {
       UserCredential credentials = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-      UserModel? userModel =
-          await _getUserDetails(isInvestor, credentials.user!.uid);
-      if (userModel != null) {
-        userModel.email = email;
-        userModel.isInvestor = isInvestor;
-        userModel.isLoggedIn = true;
-      }
-      return userModel;
+      return credentials.user!;
     } on FirebaseAuthException catch (e) {
       String message = FirebaseUtils.getMessageFromErrorCode(e.code);
-      return message;
+      throw (message);
+    } catch (e) {
+      throw (e.toString());
     }
   }
 
-  static Future<UserModel?> _getUserDetails(
-      bool isInvestor, String userId) async {
-    String docName;
-    docName = isInvestor ? 'investors' : 'farmers';
-    DocumentSnapshot doc =
-        await _firestore.collection(docName).doc(userId).get();
-    if (doc.exists == false) {
-      return null;
+  static Stream<User?> getAuthStatus() {
+    try {
+      return _auth.authStateChanges();
+    } catch (e) {
+      throw (e.toString());
     }
-    UserModel user = UserModel.fromJson(doc);
-    user.isInvestor = isInvestor;
-    return user;
+  }
+
+  static Future<UserModel> getUserDetails(
+      bool isInvestor, String userId) async {
+    try {
+      String docName;
+      docName = isInvestor ? 'investors' : 'farmers';
+      DocumentSnapshot doc =
+          await _firestore.collection(docName).doc(userId).get();
+      UserModel user = UserModel.fromJson(doc);
+      UserModel userUpdated =
+          user.copyWith(isInvestor: isInvestor, isLoggedIn: true);
+      return userUpdated;
+    } catch (e) {
+      throw (e.toString());
+    }
   }
 }

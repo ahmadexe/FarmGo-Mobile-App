@@ -55,7 +55,7 @@ class ProvideInfoScreen extends StatelessWidget {
                       ),
                     ),
                     validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.email(),
+                      FormBuilderValidators.minLength(8),
                       FormBuilderValidators.required()
                     ]),
                   ),
@@ -66,7 +66,6 @@ class ProvideInfoScreen extends StatelessWidget {
                   ),
                   SizedBox(height: app.space.y4),
                   FormBuilderTextField(
-                    obscureText: true,
                     name: 'username',
                     cursorColor: textColorGrey,
                     textCapitalization: TextCapitalization.sentences,
@@ -99,7 +98,6 @@ class ProvideInfoScreen extends StatelessWidget {
                   ),
                   SizedBox(height: app.space.y4),
                   FormBuilderTextField(
-                    obscureText: true,
                     name: 'contact',
                     cursorColor: textColorGrey,
                     textCapitalization: TextCapitalization.sentences,
@@ -121,8 +119,9 @@ class ProvideInfoScreen extends StatelessWidget {
                       ),
                     ),
                     validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.minLength(6),
-                      FormBuilderValidators.required()
+                      FormBuilderValidators.required(),
+                      FormBuilderValidators.numeric(),
+                      FormBuilderValidators.minLength(11),
                     ]),
                   ),
                   SizedBox(height: app.space.y2),
@@ -131,12 +130,26 @@ class ProvideInfoScreen extends StatelessWidget {
                     height: app.space.y1,
                     child: ElevatedButton(
                         onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (_) => SignupScreen(
-                                fullname: _infoFormKey.currentState!.fields['fullname']!.value.toString().trim(),
-                                username: _infoFormKey.currentState!.fields['username']!.value.toString().trim(),
-                                contact: _infoFormKey.currentState!.fields['contact']!.value.toString().trim(),
-                              )));
+                          if (_infoFormKey.currentState!.validate()) {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) => SignupScreen(
+                                  fullname: _infoFormKey
+                                      .currentState!.fields['fullname']!.value
+                                      .toString()
+                                      .trim(),
+                                  username: _infoFormKey
+                                      .currentState!.fields['username']!.value
+                                      .toString()
+                                      .trim(),
+                                  contact: _infoFormKey
+                                      .currentState!.fields['contact']!.value
+                                      .toString()
+                                      .trim(),
+                                ),
+                              ),
+                            );
+                          }
                         },
                         child: const Text("Next")),
                   ),

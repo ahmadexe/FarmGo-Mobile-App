@@ -152,7 +152,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             height: app.space.y1,
                             child: ElevatedButton(
                                 onPressed: () {
-                                  BlocProvider.of<UserBloc>(context).add(
+                                  if (_loginFormKey.currentState!.validate()) {
+                                    BlocProvider.of<UserBloc>(context).add(
                                       UserLogin(
                                           email: _loginFormKey.currentState!
                                               .fields['email']!.value
@@ -162,7 +163,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                               .fields['password']!.value
                                               .toString()
                                               .trim(),
-                                          isInvestor: isInvestor));
+                                          isInvestor: isInvestor),
+                                    );
+                                  }
                                 },
                                 child: const Text("Login")),
                           );
