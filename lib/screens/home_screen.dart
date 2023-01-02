@@ -98,6 +98,30 @@ class _HomeScreenState extends State<HomeScreen> {
                       tileColor: fieldContrastDark,
                       onTap: () {},
                       leading: const Icon(
+                        CupertinoIcons.map_fill,
+                        color: Colors.white,
+                      ),
+                      title: const Text("My Fields"),
+                    ),
+                    SizedBox(
+                      height: app.space.y4,
+                    ),
+                    ListTile(
+                      tileColor: fieldContrastDark,
+                      onTap: () {},
+                      leading: const Icon(
+                        CupertinoIcons.cloud_moon_fill,
+                        color: Colors.white,
+                      ),
+                      title: const Text("View Fields"),
+                    ),
+                    SizedBox(
+                      height: app.space.y4,
+                    ),
+                    ListTile(
+                      tileColor: fieldContrastDark,
+                      onTap: () {},
+                      leading: const Icon(
                         Icons.people_alt_outlined,
                         color: Colors.white,
                       ),
