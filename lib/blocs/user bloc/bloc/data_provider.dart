@@ -7,7 +7,7 @@ import '../../../utils/firebase_utils.dart';
 class UserDataProvider {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
   static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  
+
   static Future<String> signup(String username, String contact, String name,
       String email, String password, bool isInvestor) async {
     String msg = AppConstants.defaultErrorMessage;
@@ -76,5 +76,9 @@ class UserDataProvider {
     } catch (e) {
       throw (e.toString());
     }
+  }
+
+  static Future<void> logout() async {
+    await _auth.signOut();
   }
 }

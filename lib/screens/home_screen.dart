@@ -4,6 +4,7 @@ import 'package:farmgo/blocs/user%20bloc/bloc/user_state.dart';
 import 'package:farmgo/configs/custom_colors.dart';
 import 'package:farmgo/configs/defined_colors.dart';
 import 'package:farmgo/providers/app_provider.dart';
+import 'package:farmgo/screens/login_screen.dart';
 import 'package:farmgo/screens/my_fields_screen.dart';
 import 'package:farmgo/screens/news_screen.dart';
 import 'package:farmgo/widgets/your_location_tile.dart';
@@ -15,6 +16,7 @@ import '../utils/dummy_data.dart';
 import '../widgets/field_card.dart';
 import '../widgets/global_village_card.dart';
 import '../widgets/news_card.dart';
+import 'maps_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -161,7 +163,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     ListTile(
                       tileColor: fieldContrastDark,
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context).pop();
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (_) => MapsScreen()),
+                        );
+                      },
                       leading: const Icon(
                         CupertinoIcons.map_pin,
                         color: Colors.white,
@@ -173,7 +180,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     ListTile(
                       tileColor: fieldContrastDark,
-                      onTap: () {},
+                      onTap: () async {
+                        BlocProvider.of<UserBloc>(context).add(UserLogout());
+                      },
                       leading: const Icon(
                         Icons.logout,
                         color: Colors.white,

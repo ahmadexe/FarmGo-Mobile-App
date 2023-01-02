@@ -14,4 +14,6 @@ class UserRepository {
   Future<UserModel> getUserDetails(bool isInvestor, String userId) => UserDataProvider.getUserDetails(isInvestor, userId);
 
   Stream<User?> getAuthStatus() => UserDataProvider.getAuthStatus();
+
+  Future<void> logout() => UserDataProvider.logout();
 }

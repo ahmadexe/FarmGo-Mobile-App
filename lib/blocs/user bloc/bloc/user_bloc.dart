@@ -13,9 +13,19 @@ class UserBloc extends HydratedBloc<UserEvent, UserState> {
   UserBloc() : super(UserDefault()) {
     on<UserLogin>(_loginUser);
     on<UserSignup>(_signupUser);
+    on<UserLogout>(_logout);
   }
 
   UserRepository repo = UserRepository();
+
+  _logout(UserLogout event, Emitter<UserState> emit) async {
+    try {
+      await repo.logout();
+      emit(UserDefault());
+    } catch (e) {
+      emit(UserDefault());
+    }
+  }
 
   void _loginUser(UserLogin event, Emitter<UserState> emit) async {
     emit(const UserLoginLoading());
