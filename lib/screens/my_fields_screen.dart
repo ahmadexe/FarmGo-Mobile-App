@@ -1,5 +1,6 @@
 import 'package:farmgo/configs/custom_colors.dart';
 import 'package:farmgo/providers/app_provider.dart';
+import 'package:farmgo/screens/add_field_screen.dart';
 import 'package:farmgo/widgets/field_card.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,10 @@ class MyFieldsScreen extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: customPrimaryColorDark,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (_) => const AddFieldScreen()));
+        },
         child: Center(
             child: Icon(
           Icons.add,
@@ -82,7 +86,10 @@ class MyFieldsScreen extends StatelessWidget {
                               height: 40,
                               width: MediaQuery.of(context).size.width * 1 / 3,
                               child: ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (_) => const AddFieldScreen()));
+                                },
                                 child: const Text("Add Field"),
                               ),
                             )
