@@ -69,9 +69,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Hello!",
+                            Text("Hello! 👋",
                                 style:
-                                    app.text.h3.copyWith(color: textColorGrey)),
+                                    app.text.t1.copyWith(color: textColorGrey)),
                             Text("Ahmad", style: app.text.h1),
                           ],
                         ),
