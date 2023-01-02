@@ -4,6 +4,7 @@ import 'package:farmgo/blocs/user%20bloc/bloc/user_state.dart';
 import 'package:farmgo/configs/custom_colors.dart';
 import 'package:farmgo/configs/defined_colors.dart';
 import 'package:farmgo/providers/app_provider.dart';
+import 'package:farmgo/screens/my_fields_screen.dart';
 import 'package:farmgo/screens/news_screen.dart';
 import 'package:farmgo/widgets/your_location_tile.dart';
 import 'package:flutter/cupertino.dart';
@@ -96,7 +97,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     ListTile(
                       tileColor: fieldContrastDark,
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context).pop();
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (_) => MyFieldsScreen()));
+                      },
                       leading: const Icon(
                         CupertinoIcons.map_fill,
                         color: Colors.white,
