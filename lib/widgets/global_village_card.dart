@@ -1,6 +1,7 @@
 import 'package:farmgo/configs/defined_colors.dart';
 import 'package:farmgo/providers/app_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 part '_gv_tiles.dart';
@@ -14,7 +15,7 @@ class GlobalVillageCard extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.all(Radius.circular(app.radius.lightCurve)),
       child: Container(
-        height: 140,
+        height: 140.h,
         width: MediaQuery.of(context).size.width,
         color: greenColorSecondary,
         child: Padding(

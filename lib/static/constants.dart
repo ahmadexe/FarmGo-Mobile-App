@@ -1,6 +1,8 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 class AppConstants {
-  static const double toolbarHeightDefault = 130;
-  static const double toolbarHeighty1 = 90;
+  static double toolbarHeightDefault = 130.h;
+  static double toolbarHeighty1 = 90.h;
   static const String defaultErrorMessage = "An error has occured";
   static const String success = "success";
   static const String weakPassword =

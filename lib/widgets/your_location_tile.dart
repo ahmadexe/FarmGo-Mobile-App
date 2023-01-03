@@ -1,6 +1,7 @@
 import 'package:farmgo/configs/defined_colors.dart';
 import 'package:farmgo/providers/app_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class YourLocationTile extends StatelessWidget {
   const YourLocationTile({super.key});
@@ -13,7 +14,7 @@ class YourLocationTile extends StatelessWidget {
       child: ClipRRect(
         borderRadius: const BorderRadius.all(Radius.circular(10)),
         child: Container(
-          height: 70,
+          height: 70.h,
           width: MediaQuery.of(context).size.width,
           color: greenColorSecondary,
           child: Padding(
@@ -24,7 +25,7 @@ class YourLocationTile extends StatelessWidget {
                   borderRadius: const BorderRadius.all(Radius.circular(10)),
                   child: SizedBox(
                     height: double.infinity,
-                    width: 60,
+                    width: 60.w,
                     child: Image.asset(
                       'assets/images/maps.jpg',
                       fit: BoxFit.fill,

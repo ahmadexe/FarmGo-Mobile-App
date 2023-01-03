@@ -1,6 +1,7 @@
 import 'package:farmgo/configs/defined_colors.dart';
 import 'package:farmgo/providers/app_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MapTabs extends StatefulWidget {
   const MapTabs({super.key});
@@ -14,7 +15,9 @@ class _MapTabsState extends State<MapTabs> {
   Widget build(BuildContext context) {
     AppProvider app = AppProvider.state(context);
     return Wrap(
-      spacing: 10,
+      direction: Axis.horizontal,
+      spacing: 10.w,
+      runSpacing: 10.h,
       children: [
         GestureDetector(
           onTap: () {
@@ -23,7 +26,7 @@ class _MapTabsState extends State<MapTabs> {
             });
           },
           child: Container(
-            height: 35,
+            height: 35.h,
             decoration: BoxDecoration(
               color: app.mapTabIndex == 0
                   ? greenColorSecondary
@@ -63,7 +66,7 @@ class _MapTabsState extends State<MapTabs> {
             });
           },
           child: Container(
-            height: 35,
+            height: 35.h,
             decoration: BoxDecoration(
               color: app.mapTabIndex == 1
                   ? greenColorSecondary
@@ -103,7 +106,7 @@ class _MapTabsState extends State<MapTabs> {
             });
           },
           child: Container(
-            height: 35,
+            height: 35.h,
             decoration: BoxDecoration(
               color: app.mapTabIndex == 2
                   ? greenColorSecondary
@@ -143,7 +146,7 @@ class _MapTabsState extends State<MapTabs> {
             });
           },
           child: Container(
-            height: 35,
+            height: 35.h,
             decoration: BoxDecoration(
               color: app.mapTabIndex == 3
                   ? greenColorSecondary

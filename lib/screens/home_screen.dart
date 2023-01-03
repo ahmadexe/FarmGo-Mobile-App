@@ -294,13 +294,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: CircularProgressIndicator(),
                               );
                             } else if (newsState is NewsFetchSuccess) {
-                              return ListView.builder(
+                              return ListView.separated(
                                 shrinkWrap: true,
                                 physics: const NeverScrollableScrollPhysics(),
                                 itemCount: 3,
                                 itemBuilder: (context, index) {
                                   return NewsCard(
                                       article: newsState.data![index]);
+                                },
+                                separatorBuilder: (context, index) {
+                                  return SizedBox(height: app.space.y4);
                                 },
                               );
                             } else {

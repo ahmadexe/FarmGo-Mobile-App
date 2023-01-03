@@ -10,7 +10,7 @@ class _GVTiles extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.all(Radius.circular(app.radius.lightCurve)),
       child: Container(
-        height: 130,
+        height: 130.h,
         width: MediaQuery.of(context).size.width * 0.44,
         color: fieldContrastDark,
         child: Center(
@@ -20,8 +20,8 @@ class _GVTiles extends StatelessWidget {
                 flex: 2,
                 child: SvgPicture.asset(
                   isBot? 'assets/svgs/bot.svg' : 'assets/svgs/channels.svg',
-                  height: 60,
-                  width: 60,
+                  height: 60.h,
+                  width: 60.h,
                 ),
               ),
               Expanded(child: Text(isBot? "Farmer Bot" : "Channels", style: app.text.t1b)),

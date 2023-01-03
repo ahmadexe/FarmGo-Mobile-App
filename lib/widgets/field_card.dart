@@ -4,6 +4,7 @@ import 'package:farmgo/configs/defined_colors.dart';
 import 'package:farmgo/models/field.dart';
 import 'package:farmgo/providers/app_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FieldCard extends StatelessWidget {
   final Field field;
@@ -16,8 +17,8 @@ class FieldCard extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        width: 175,
-        height: 190,
+        width: 175.w,
+        height: 190.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(app.radius.lightCurve)),
           color: fieldContrastDark,
