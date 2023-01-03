@@ -1,3 +1,5 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 class AppSpaces {
   late double y1;
   late double y2;
@@ -7,11 +9,11 @@ class AppSpaces {
   late double x2;
 
   init() {
-    y1 = 40;
-    y2 = 30;
-    y3 = 20;
-    y4 = 10;
-    x1 = 40;
-    x2 = 10;
+    y1 = 40.h;
+    y2 = 30.h;
+    y3 = 20.h;
+    y4 = 10.h;
+    x1 = 40.w;
+    x2 = 10.w;
   }
 }

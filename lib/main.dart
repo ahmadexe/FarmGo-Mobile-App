@@ -9,10 +9,12 @@ import 'package:farmgo/utils/mobile_layout_utils.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
+import 'base_wrapper.dart';
 import 'screens/login_screen.dart';
 
 void main() async {
@@ -39,21 +41,29 @@ class MyApp extends StatelessWidget {
       ],
       child: BlocBuilder<SwitchCubit, SwitchState>(
         builder: (context, switchState) {
-          AppProvider app = AppProvider.state(context);
-          app.init();
           return BlocBuilder<UserBloc, UserState>(
               builder: (context, authState) {
-            return MaterialApp(
-              home: authState.data == null
+            return ScreenUtilInit(
+              designSize: const Size(412, 915),
+              minTextAdapt: true,
+              splitScreenMode: true,
+              builder: (context, child) {
+                return BaseWrapper(
+                  child: MaterialApp(
+                    theme: switchState.flag
+                        ? appThemeData[AppThemes.dark]
+                        : appThemeData[AppThemes.light],
+                    home: child,
+                  ),
+                );
+              },
+              child: authState.data == null
                   ? const LoginScreen()
                   : authState.data!.isLoggedIn
                       ? const MobileLayoutUtils()
                       : const LoginScreen(),
-              theme: switchState.flag
-                  ? appThemeData[AppThemes.dark]
-                  : appThemeData[AppThemes.light],
             );
-          });
+          },);
         },
       ),
     );
