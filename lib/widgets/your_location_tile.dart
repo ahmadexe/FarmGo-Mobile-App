@@ -1,6 +1,5 @@
 import 'package:farmgo/configs/defined_colors.dart';
 import 'package:farmgo/providers/app_provider.dart';
-import 'package:farmgo/screens/maps_screen.dart';
 import 'package:flutter/material.dart';
 
 class YourLocationTile extends StatelessWidget {

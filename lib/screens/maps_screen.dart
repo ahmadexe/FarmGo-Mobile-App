@@ -120,9 +120,9 @@ class MapsScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: const MapTabs(),
+      bottomNavigationBar: const Padding(
+        padding: EdgeInsets.all(16.0),
+        child: MapTabs(),
       ),
     );
   }

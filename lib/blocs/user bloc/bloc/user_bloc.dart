@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:farmgo/blocs/user%20bloc/bloc/repository.dart';
 import 'package:farmgo/blocs/user%20bloc/bloc/user_state.dart';

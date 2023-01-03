@@ -1,10 +1,8 @@
 import 'package:farmgo/blocs/news%20bloc/bloc/news_bloc.dart';
 import 'package:farmgo/blocs/user%20bloc/bloc/user_bloc.dart';
 import 'package:farmgo/blocs/user%20bloc/bloc/user_state.dart';
-import 'package:farmgo/configs/custom_colors.dart';
 import 'package:farmgo/configs/defined_colors.dart';
 import 'package:farmgo/providers/app_provider.dart';
-import 'package:farmgo/screens/login_screen.dart';
 import 'package:farmgo/screens/my_fields_screen.dart';
 import 'package:farmgo/screens/news_screen.dart';
 import 'package:farmgo/widgets/your_location_tile.dart';

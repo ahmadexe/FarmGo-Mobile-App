@@ -10,7 +10,6 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import '../blocs/user bloc/bloc/user_bloc.dart';
 import '../blocs/user bloc/bloc/user_state.dart';
 import '../utils/snackbar_utils.dart';
-import '../widgets/login_additionals_tile.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -174,22 +173,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ],
                 ),
-              ),
-              SizedBox(height: app.space.y4),
-              Center(
-                  child: Text("Or login with",
-                      style: app.text.t2.copyWith(color: textColorGrey))),
-              SizedBox(height: app.space.y4),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  LoginAddTile(
-                      imagePath: 'assets/images/facebookLogo.png',
-                      text: 'Facebook'),
-                  LoginAddTile(
-                      imagePath: 'assets/images/googleLogo.png',
-                      text: 'Google'),
-                ],
               ),
               SizedBox(height: app.space.y1),
               Center(

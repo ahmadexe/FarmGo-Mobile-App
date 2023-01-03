@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 
 import '../configs/defined_colors.dart';
 import '../models/field.dart';
-import '../utils/dummy_data.dart';
 
 class MyFieldsScreen extends StatelessWidget {
   MyFieldsScreen({super.key});
