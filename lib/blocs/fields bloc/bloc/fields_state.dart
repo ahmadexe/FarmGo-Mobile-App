@@ -8,7 +8,7 @@ class FieldsState extends Equatable {
   const FieldsState({this.addFieldState, this.fetchFieldsState});
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [addFieldState, fetchFieldsState];
 
   FieldsState copyWith({
     AddFieldState? addFieldState,

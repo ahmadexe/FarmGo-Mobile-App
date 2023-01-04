@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../configs/defined_colors.dart';
 import '../models/field.dart';
+// import '../utils/dummy_data.dart';
 
 class AllFieldsScreen extends StatelessWidget {
   AllFieldsScreen({super.key});
@@ -74,10 +75,10 @@ class AllFieldsScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(height: app.space.y1),
-                            Text("Welcome to your fields", style: app.text.h1),
+                            Text("Welcome to the fields", style: app.text.h1),
                             SizedBox(height: app.space.y4),
                             Text(
-                              "View all of your fields, track your activities and let the agri world know what's up. Start adding your fields now.",
+                              "Looks like there are no fields to show right now. No worries, you can add fields right now!",
                               style: app.text.t1.copyWith(color: textColorGrey),
                             ),
                             SizedBox(height: app.space.y4),
@@ -86,8 +87,11 @@ class AllFieldsScreen extends StatelessWidget {
                               width: MediaQuery.of(context).size.width * 1 / 3,
                               child: ElevatedButton(
                                 onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (_) => const AddFieldScreen()));
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (_) => const AddFieldScreen(),
+                                    ),
+                                  );
                                 },
                                 child: const Text("Add Field"),
                               ),

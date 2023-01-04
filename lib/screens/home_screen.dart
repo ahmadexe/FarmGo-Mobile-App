@@ -3,6 +3,7 @@ import 'package:farmgo/blocs/user%20bloc/bloc/user_bloc.dart';
 import 'package:farmgo/blocs/user%20bloc/bloc/user_state.dart';
 import 'package:farmgo/configs/defined_colors.dart';
 import 'package:farmgo/providers/app_provider.dart';
+import 'package:farmgo/screens/all_fields_screen.dart';
 import 'package:farmgo/screens/my_fields_screen.dart';
 import 'package:farmgo/screens/news_screen.dart';
 import 'package:farmgo/widgets/your_location_tile.dart';
@@ -113,7 +114,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     ListTile(
                       tileColor: fieldContrastDark,
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (_) => AllFieldsScreen())
+                        );
+                      },
                       leading: const Icon(
                         CupertinoIcons.cloud_moon_fill,
                         color: Colors.white,

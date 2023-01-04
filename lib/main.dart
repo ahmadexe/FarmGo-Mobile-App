@@ -16,6 +16,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'base_wrapper.dart';
+import 'blocs/fields bloc/bloc/fields_bloc.dart';
 import 'screens/login_screen.dart';
 
 void main() async {
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => SwitchCubit()),
         BlocProvider(create: (_) => NewsBloc()),
         BlocProvider(create: (_) => WeatherBloc()),
+        BlocProvider(create: (_) => FieldsBloc()),
         ChangeNotifierProvider(create: (_) => AppProvider()..init()),
       ],
       child: BlocBuilder<SwitchCubit, SwitchState>(

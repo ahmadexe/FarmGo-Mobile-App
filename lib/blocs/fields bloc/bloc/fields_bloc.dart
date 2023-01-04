@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:farmgo/blocs/fields%20bloc/bloc/repository.dart';
+import 'package:flutter/foundation.dart';
 
 import '../../../models/field.dart';
 import 'add_field_state.dart';
@@ -22,11 +23,12 @@ class FieldsBloc extends Bloc<FieldsEvent, FieldsState> {
     try {
       await repo.addAField(event.field);
       emit(state.copyWith(
-          addFieldState:
-              const AddFieldSuccess(message: "Field added successfully!")));
+        addFieldState: const AddFieldSuccess(message: "Field Added Successfully!")
+      ));
+      debugPrint('reached');
     } catch (e) {
-      emit(
-          state.copyWith(addFieldState: AddFieldFailed(message: e.toString())));
+      emit(const FieldsState(
+          addFieldState: AddFieldFailed(message: "Field added successfully!")));
     }
   }
 
