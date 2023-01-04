@@ -9,6 +9,8 @@ class Field {
   final String ownerId; 
   final String imgUrl;
   final String address;
+  final String city;
+  final String id;
   Field({
     required this.fieldName,
     required this.latitude,
@@ -17,6 +19,8 @@ class Field {
     required this.ownerId,
     required this.imgUrl,
     required this.address,
+    required this.city,
+    required this.id,
   });
   
 
@@ -28,6 +32,8 @@ class Field {
     String? ownerId,
     String? imgUrl,
     String? address,
+    String? city,
+    String? id,
   }) {
     return Field(
       fieldName: fieldName ?? this.fieldName,
@@ -37,6 +43,8 @@ class Field {
       ownerId: ownerId ?? this.ownerId,
       imgUrl: imgUrl ?? this.imgUrl,
       address: address ?? this.address,
+      city: city ?? this.city,
+      id: id ?? this.id,
     );
   }
 
@@ -49,6 +57,8 @@ class Field {
       'ownerId': ownerId,
       'imgUrl': imgUrl,
       'address': address,
+      'city': city,
+      'id': id,
     };
   }
 
@@ -61,6 +71,8 @@ class Field {
       ownerId: map['ownerId'] as String,
       imgUrl: map['imgUrl'] as String,
       address: map['address'] as String,
+      city: map['city'] as String,
+      id: map['id'] as String,
     );
   }
 
@@ -70,7 +82,7 @@ class Field {
 
   @override
   String toString() {
-    return 'Field(fieldName: $fieldName, latitude: $latitude, longitude: $longitude, ownerName: $ownerName, ownerId: $ownerId, imgUrl: $imgUrl, address: $address)';
+    return 'Field(fieldName: $fieldName, latitude: $latitude, longitude: $longitude, ownerName: $ownerName, ownerId: $ownerId, imgUrl: $imgUrl, address: $address, city: $city, id: $id)';
   }
 
   @override
@@ -84,7 +96,9 @@ class Field {
       other.ownerName == ownerName &&
       other.ownerId == ownerId &&
       other.imgUrl == imgUrl &&
-      other.address == address;
+      other.address == address &&
+      other.city == city &&
+      other.id == id;
   }
 
   @override
@@ -95,6 +109,8 @@ class Field {
       ownerName.hashCode ^
       ownerId.hashCode ^
       imgUrl.hashCode ^
-      address.hashCode;
+      address.hashCode ^
+      city.hashCode ^
+      id.hashCode;
   }
 }

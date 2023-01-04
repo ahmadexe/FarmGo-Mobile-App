@@ -19,7 +19,6 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     try {
       WeatherResponse response =
           await repo.getWeatherResponse(event.lat, event.long);
-      print(response.toString());
       emit(WeatherResponseSuccess(data: response));
     } catch (e) {
       emit(WeatherResponseFailed(message: e.toString()));
