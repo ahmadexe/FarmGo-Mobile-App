@@ -17,3 +17,5 @@ class AddFieldSuccess extends AddFieldState {
 class AddFieldFailed extends AddFieldState {
   const AddFieldFailed({String? message}) : super(message: message);
 }
+
+class AddFieldDefault extends AddFieldState{}

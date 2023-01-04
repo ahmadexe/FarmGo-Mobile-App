@@ -1,6 +1,6 @@
+import 'package:farmgo/blocs/fields%20bloc/bloc/fetch_fields_state.dart';
 import 'package:farmgo/blocs/news%20bloc/bloc/news_bloc.dart';
 import 'package:farmgo/blocs/user%20bloc/bloc/user_bloc.dart';
-import 'package:farmgo/blocs/user%20bloc/bloc/user_state.dart';
 import 'package:farmgo/configs/defined_colors.dart';
 import 'package:farmgo/providers/app_provider.dart';
 import 'package:farmgo/screens/all_fields_screen.dart';
@@ -10,6 +10,7 @@ import 'package:farmgo/widgets/your_location_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../blocs/fields bloc/bloc/fields_bloc.dart';
 import '../static/constants.dart';
 import '../utils/dummy_data.dart';
 import '../widgets/field_card.dart';
@@ -29,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     BlocProvider.of<NewsBloc>(context).add(FetchNews());
+    BlocProvider.of<FieldsBloc>(context).add(FetchFields());
   }
 
   final dropdownItems = [
@@ -50,9 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     AppProvider app = AppProvider.state(context);
-    return BlocBuilder<UserBloc, UserState>(
-      builder: (context, state) {
-        return SafeArea(
+    return SafeArea(
           child: Scaffold(
             drawer: Drawer(
               backgroundColor: fieldContrastDark,
@@ -115,9 +115,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ListTile(
                       tileColor: fieldContrastDark,
                       onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(builder: (_) => AllFieldsScreen())
-                        );
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (_) => AllFieldsScreen()));
                       },
                       leading: const Icon(
                         CupertinoIcons.cloud_moon_fill,
@@ -250,17 +249,31 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                     SizedBox(height: app.space.y4),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Wrap(
-                        spacing: app.space.x2,
-                        children: List.generate(
-                          3,
-                          (index) => FieldCard(
-                              onPressed: () {}, field: DummyData.fields[index]),
-                        ),
-                      ),
-                    ),
+                    BlocBuilder<FieldsBloc, FieldsState>(
+                        builder: (context, fieldState) {
+                      if (fieldState.fetchFieldsState is FetchFieldsLoading) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      } else if (fieldState.fetchFieldsState
+                          is FetchFieldsSuccess) {
+                            print(fieldState.fetchFieldsState!.data);
+                        return SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Wrap(
+                            spacing: app.space.x2,
+                            children: List.generate(
+                              3,
+                              (index) => FieldCard(
+                                  onPressed: () {},
+                                  field: DummyData.fields[index]),
+                            ),
+                          ),
+                        );
+                      } else {
+                        return const SizedBox();
+                      }
+                    }),
                     SizedBox(height: app.space.y2),
                     Text("Global Village", style: app.text.h2),
                     SizedBox(height: app.space.y4),
@@ -324,7 +337,5 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         );
-      },
-    );
   }
 }

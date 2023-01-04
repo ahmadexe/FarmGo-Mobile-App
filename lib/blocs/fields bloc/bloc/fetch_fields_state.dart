@@ -19,5 +19,7 @@ class FetchFieldsSuccess extends FetchFieldsState {
 }
 
 class FetchFieldsFailed extends FetchFieldsState {
-  const FetchFieldsFailed({String? message, List<Field>? data}) : super(message: message, data: data);
+  const FetchFieldsFailed({String? message}) : super(message: message);
 }
+
+class FetchFieldDefault extends FetchFieldsState{}
