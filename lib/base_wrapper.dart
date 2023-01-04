@@ -7,8 +7,6 @@ class BaseWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppProvider app = AppProvider.state(context);
-    app.init();
     return child;
   }
 }

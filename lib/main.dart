@@ -37,33 +37,34 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => UserBloc()),
         BlocProvider(create: (_) => SwitchCubit()),
         BlocProvider(create: (_) => NewsBloc()),
-        ChangeNotifierProvider(create: (_) => AppProvider()),
+        ChangeNotifierProvider(create: (_) => AppProvider()..init()),
       ],
       child: BlocBuilder<SwitchCubit, SwitchState>(
         builder: (context, switchState) {
           return BlocBuilder<UserBloc, UserState>(
-              builder: (context, authState) {
-            return ScreenUtilInit(
-              designSize: const Size(412, 915),
-              minTextAdapt: true,
-              splitScreenMode: true,
-              builder: (context, child) {
-                return BaseWrapper(
-                  child: MaterialApp(
-                    theme: switchState.flag
-                        ? appThemeData[AppThemes.dark]
-                        : appThemeData[AppThemes.light],
-                    home: child,
-                  ),
-                );
-              },
-              child: authState.data == null
-                  ? const LoginScreen()
-                  : authState.data!.isLoggedIn
-                      ? const MobileLayoutUtils()
-                      : const LoginScreen(),
-            );
-          },);
+            builder: (context, authState) {
+              return ScreenUtilInit(
+                designSize: const Size(412, 915),
+                minTextAdapt: true,
+                splitScreenMode: true,
+                builder: (context, child) {
+                  return BaseWrapper(
+                    child: MaterialApp(
+                      theme: switchState.flag
+                          ? appThemeData[AppThemes.dark]
+                          : appThemeData[AppThemes.light],
+                      home: child,
+                    ),
+                  );
+                },
+                child: authState.data == null
+                    ? const LoginScreen()
+                    : authState.data!.isLoggedIn
+                        ? const MobileLayoutUtils()
+                        : const LoginScreen(),
+              );
+            },
+          );
         },
       ),
     );
