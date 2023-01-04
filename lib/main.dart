@@ -1,6 +1,7 @@
 import 'package:farmgo/blocs/news%20bloc/bloc/news_bloc.dart';
 import 'package:farmgo/blocs/user%20bloc/bloc/user_bloc.dart';
 import 'package:farmgo/blocs/user%20bloc/bloc/user_state.dart';
+import 'package:farmgo/blocs/weather%20bloc/bloc/weather_bloc.dart';
 import 'package:farmgo/cubits/switch/switch_cubit.dart';
 import 'package:farmgo/firebase_options.dart';
 import 'package:farmgo/global/themes.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => UserBloc()),
         BlocProvider(create: (_) => SwitchCubit()),
         BlocProvider(create: (_) => NewsBloc()),
+        BlocProvider(create: (_) => WeatherBloc()),
         ChangeNotifierProvider(create: (_) => AppProvider()..init()),
       ],
       child: BlocBuilder<SwitchCubit, SwitchState>(

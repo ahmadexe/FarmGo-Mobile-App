@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 class WeatherResponse {
   Coord? coord;
   List<Weather>? weather;
@@ -85,6 +86,11 @@ class WeatherResponse {
     data['cod'] = cod;
     return data;
   }
+
+  @override
+  String toString() {
+    return 'WeatherResponse(coord: $coord, weather: $weather, base: $base, main: $main, visibility: $visibility, wind: $wind, rain: $rain, clouds: $clouds, dt: $dt, sys: $sys, timezone: $timezone, id: $id, name: $name, cod: $cod)';
+  }
 }
 
 class Coord {
@@ -104,6 +110,9 @@ class Coord {
     data['lat'] = lat;
     return data;
   }
+
+  @override
+  String toString() => 'Coord(lon: $lon, lat: $lat)';
 }
 
 class Weather {
@@ -128,6 +137,15 @@ class Weather {
     data['description'] = description;
     data['icon'] = icon;
     return data;
+  }
+
+  String get iconUrl {
+    return 'https://openweathermap.org/img/wn/$icon@2x.png';
+  }
+
+  @override
+  String toString() {
+    return 'Weather(id: $id, main: $main, description: $description, icon: $icon)';
   }
 }
 
@@ -174,6 +192,11 @@ class Main {
     data['grnd_level'] = grndLevel;
     return data;
   }
+
+  @override
+  String toString() {
+    return 'Main(temp: $temp, feelsLike: $feelsLike, tempMin: $tempMin, tempMax: $tempMax, pressure: $pressure, humidity: $humidity, seaLevel: $seaLevel, grndLevel: $grndLevel)';
+  }
 }
 
 class Wind {
@@ -196,6 +219,9 @@ class Wind {
     data['gust'] = gust;
     return data;
   }
+
+  @override
+  String toString() => 'Wind(speed: $speed, deg: $deg, gust: $gust)';
 }
 
 class Rain {
@@ -212,6 +238,9 @@ class Rain {
     data['1h'] = d1h;
     return data;
   }
+
+  @override
+  String toString() => 'Rain(d1h: $d1h)';
 }
 
 class Clouds {
@@ -228,6 +257,9 @@ class Clouds {
     data['all'] = all;
     return data;
   }
+
+  @override
+  String toString() => 'Clouds(all: $all)';
 }
 
 class Sys {
@@ -255,5 +287,10 @@ class Sys {
     data['sunrise'] = sunrise;
     data['sunset'] = sunset;
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'Sys(type: $type, id: $id, country: $country, sunrise: $sunrise, sunset: $sunset)';
   }
 }
