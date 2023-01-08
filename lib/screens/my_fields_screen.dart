@@ -1,18 +1,18 @@
+import 'package:farmgo/blocs/fields%20bloc/bloc/fields_bloc.dart';
+import 'package:farmgo/blocs/user%20bloc/bloc/user_bloc.dart';
 import 'package:farmgo/configs/custom_colors.dart';
 import 'package:farmgo/providers/app_provider.dart';
 import 'package:farmgo/screens/add_field_screen.dart';
 import 'package:farmgo/widgets/field_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../configs/defined_colors.dart';
-import '../models/field.dart';
+// import '../utils/dummy_data.dart';
 
 class MyFieldsScreen extends StatelessWidget {
   MyFieldsScreen({super.key});
   final TextEditingController _fieldController = TextEditingController();
-
-  // final List<Field> _fields = DummyData.fields;
-  final List<Field> _fields = [];
 
   @override
   Widget build(BuildContext context) {
@@ -31,19 +31,19 @@ class MyFieldsScreen extends StatelessWidget {
         )),
       ),
       appBar: AppBar(
-        title: const Text("My Fields"),
+        title: const Text("Fields"),
         elevation: 0,
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Center(
+      body: BlocBuilder<FieldsBloc, FieldsState>(builder: (context, state) {
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _fields.isEmpty
+                state.fetchFieldsState!.data!.isEmpty
                     ? const SizedBox()
                     : TextFormField(
                         controller: _fieldController,
@@ -68,16 +68,16 @@ class MyFieldsScreen extends StatelessWidget {
                         ),
                       ),
                 SizedBox(height: app.space.y3),
-                _fields.isEmpty
+                state.fetchFieldsState!.data!.isEmpty
                     ? Center(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(height: app.space.y1),
-                            Text("Welcome to your fields", style: app.text.h1),
+                            Text("Welcome to the fields", style: app.text.h1),
                             SizedBox(height: app.space.y4),
                             Text(
-                              "View all of your fields, track your activities and let the agri world know what's up. Start adding your fields now.",
+                              "Looks like there are no fields to show right now. No worries, you can add fields right now!",
                               style: app.text.t1.copyWith(color: textColorGrey),
                             ),
                             SizedBox(height: app.space.y4),
@@ -86,8 +86,11 @@ class MyFieldsScreen extends StatelessWidget {
                               width: MediaQuery.of(context).size.width * 1 / 3,
                               child: ElevatedButton(
                                 onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (_) => const AddFieldScreen()));
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (_) => const AddFieldScreen(),
+                                    ),
+                                  );
                                 },
                                 child: const Text("Add Field"),
                               ),
@@ -98,15 +101,17 @@ class MyFieldsScreen extends StatelessWidget {
                     : Wrap(
                         spacing: 20,
                         runSpacing: 10,
-                        children: _fields
+                        children: state.fetchFieldsState!.data!.where((element) => 
+                              element.ownerId == BlocProvider.of<UserBloc>(context).state.data!.userId
+                            ).toList()
                             .map((e) => FieldCard(onPressed: () {}, field: e))
                             .toList(),
                       ),
               ],
             ),
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 }

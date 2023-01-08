@@ -64,18 +64,19 @@ class FieldsBloc extends Bloc<FieldsEvent, FieldsState> {
       // );
         
         // });
+      List<Field> fields = [];
 
       await emit.forEach(repo.fetchAllFields(), onData: (info) {
         List json = info.docs;
-        List<Field> fields = [];
         for (var element in json) {
           Field field = Field.fromMap(element.data());
-          fields.add(field);
+          if (!fields.contains(field)) {
+            fields.add(field);
+          }
         }
         return state.copyWith(
           fetchFieldsState: FetchFieldsSuccess(data: fields)
         );
-
       });
 
     } catch (e) {

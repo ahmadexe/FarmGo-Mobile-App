@@ -257,16 +257,15 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                       } else if (fieldState.fetchFieldsState
                           is FetchFieldsSuccess) {
-                            print(fieldState.fetchFieldsState!.data);
                         return SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Wrap(
                             spacing: app.space.x2,
                             children: List.generate(
-                              3,
+                              fieldState.fetchFieldsState!.data!.length < 3? fieldState.fetchFieldsState!.data!.length : 3,
                               (index) => FieldCard(
                                   onPressed: () {},
-                                  field: DummyData.fields[index]),
+                                  field: fieldState.fetchFieldsState!.data![index]),
                             ),
                           ),
                         );

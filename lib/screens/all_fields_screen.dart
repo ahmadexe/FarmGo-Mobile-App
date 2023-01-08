@@ -1,8 +1,10 @@
+import 'package:farmgo/blocs/fields%20bloc/bloc/fields_bloc.dart';
 import 'package:farmgo/configs/custom_colors.dart';
 import 'package:farmgo/providers/app_provider.dart';
 import 'package:farmgo/screens/add_field_screen.dart';
 import 'package:farmgo/widgets/field_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../configs/defined_colors.dart';
 import '../models/field.dart';
@@ -11,9 +13,6 @@ import '../models/field.dart';
 class AllFieldsScreen extends StatelessWidget {
   AllFieldsScreen({super.key});
   final TextEditingController _fieldController = TextEditingController();
-
-  // final List<Field> _fields = DummyData.fields;
-  final List<Field> _fields = [];
 
   @override
   Widget build(BuildContext context) {
@@ -36,15 +35,16 @@ class AllFieldsScreen extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Center(
+      body: BlocBuilder<FieldsBloc, FieldsState>(builder: (context, state) {
+        print(state.fetchFieldsState!.data!.length);
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _fields.isEmpty
+                state.fetchFieldsState!.data!.isEmpty
                     ? const SizedBox()
                     : TextFormField(
                         controller: _fieldController,
@@ -69,7 +69,7 @@ class AllFieldsScreen extends StatelessWidget {
                         ),
                       ),
                 SizedBox(height: app.space.y3),
-                _fields.isEmpty
+                state.fetchFieldsState!.data!.isEmpty
                     ? Center(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,15 +102,15 @@ class AllFieldsScreen extends StatelessWidget {
                     : Wrap(
                         spacing: 20,
                         runSpacing: 10,
-                        children: _fields
+                        children: state.fetchFieldsState!.data!
                             .map((e) => FieldCard(onPressed: () {}, field: e))
                             .toList(),
                       ),
               ],
             ),
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 }
