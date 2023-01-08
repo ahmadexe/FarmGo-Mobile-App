@@ -12,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../blocs/fields bloc/bloc/fields_bloc.dart';
 import '../static/constants.dart';
-import '../utils/dummy_data.dart';
 import '../widgets/field_card.dart';
 import '../widgets/global_village_card.dart';
 import '../widgets/news_card.dart';
@@ -237,14 +236,21 @@ class _HomeScreenState extends State<HomeScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text("Fields Around you", style: app.text.h2),
-                        Row(
-                          children: [
-                            Text("Explore ", style: app.text.t2),
-                            const Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              size: 12,
-                            )
-                          ],
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(builder: (_) => AllFieldsScreen())
+                            );
+                          },
+                          child: Row(
+                            children: [
+                              Text("Explore ", style: app.text.t2),
+                              const Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                size: 12,
+                              )
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -284,22 +290,21 @@ class _HomeScreenState extends State<HomeScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text("News", style: app.text.h2),
-                            Row(
-                              children: [
-                                GestureDetector(
-                                    onTap: () {
-                                      Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (_) =>
-                                                  const NewsScreen()));
-                                    },
-                                    child:
-                                        Text("See More ", style: app.text.t2)),
-                                const Icon(
-                                  Icons.arrow_forward_ios_rounded,
-                                  size: 12,
-                                )
-                              ],
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(builder: (_) => const NewsScreen())
+                                );
+                              },
+                              child: Row(
+                                children: [
+                                  Text("See More ", style: app.text.t2),
+                                  const Icon(
+                                    Icons.arrow_forward_ios_rounded,
+                                    size: 12,
+                                  )
+                                ],
+                              ),
                             ),
                           ],
                         ),
