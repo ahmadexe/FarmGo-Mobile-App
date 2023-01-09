@@ -2,6 +2,7 @@ import 'package:farmgo/blocs/fields%20bloc/bloc/fetch_fields_state.dart';
 import 'package:farmgo/blocs/news%20bloc/bloc/news_bloc.dart';
 import 'package:farmgo/blocs/user%20bloc/bloc/user_bloc.dart';
 import 'package:farmgo/configs/defined_colors.dart';
+import 'package:farmgo/models/user_model.dart';
 import 'package:farmgo/providers/app_provider.dart';
 import 'package:farmgo/screens/all_fields_screen.dart';
 import 'package:farmgo/screens/my_fields_screen.dart';
@@ -51,200 +52,254 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     AppProvider app = AppProvider.state(context);
+    UserModel user = BlocProvider.of<UserBloc>(context).state.data!;
     return SafeArea(
-          child: Scaffold(
-            drawer: Drawer(
-              backgroundColor: fieldContrastDark,
-              child: Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: Column(
+      child: Scaffold(
+        drawer: Drawer(
+          backgroundColor: fieldContrastDark,
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Column(
+              children: [
+                SizedBox(height: app.space.y1),
+                Row(
                   children: [
-                    SizedBox(height: app.space.y1),
-                    Row(
+                    const CircleAvatar(
+                      radius: 30,
+                      foregroundImage: AssetImage('assets/images/dp.jpeg'),
+                    ),
+                    SizedBox(width: app.space.x2),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const CircleAvatar(
-                          radius: 30,
-                          foregroundImage: AssetImage('assets/images/dp.jpeg'),
-                        ),
-                        SizedBox(width: app.space.x2),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Hello! 👋",
-                                style:
-                                    app.text.t1.copyWith(color: textColorGrey)),
-                            Text("Ahmad", style: app.text.h1),
-                          ],
-                        ),
+                        Text("Hello! 👋",
+                            style: app.text.t1.copyWith(color: textColorGrey)),
+                        Text(user.userName, style: app.text.h1),
                       ],
                     ),
-                    SizedBox(height: app.space.y3),
-                    const Divider(),
-                    SizedBox(
-                      height: app.space.y4,
-                    ),
-                    ListTile(
-                      tileColor: fieldContrastDark,
-                      onTap: () {},
-                      leading: const Icon(
-                        CupertinoIcons.leaf_arrow_circlepath,
-                        color: Colors.white,
-                      ),
-                      title: const Text("My Plants"),
-                    ),
-                    SizedBox(
-                      height: app.space.y4,
-                    ),
-                    ListTile(
-                      tileColor: fieldContrastDark,
-                      onTap: () {
-                        Navigator.of(context).pop();
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (_) => MyFieldsScreen()));
-                      },
-                      leading: const Icon(
-                        CupertinoIcons.map_fill,
-                        color: Colors.white,
-                      ),
-                      title: const Text("My Fields"),
-                    ),
-                    SizedBox(
-                      height: app.space.y4,
-                    ),
-                    ListTile(
-                      tileColor: fieldContrastDark,
+                  ],
+                ),
+                SizedBox(height: app.space.y3),
+                const Divider(),
+                SizedBox(
+                  height: app.space.y4,
+                ),
+                ListTile(
+                  tileColor: fieldContrastDark,
+                  onTap: () {},
+                  leading: const Icon(
+                    CupertinoIcons.leaf_arrow_circlepath,
+                    color: Colors.white,
+                  ),
+                  title: const Text("My Plants"),
+                ),
+                SizedBox(
+                  height: app.space.y4,
+                ),
+                ListTile(
+                  tileColor: fieldContrastDark,
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => MyFieldsScreen()));
+                  },
+                  leading: const Icon(
+                    CupertinoIcons.map_fill,
+                    color: Colors.white,
+                  ),
+                  title: const Text("My Fields"),
+                ),
+                SizedBox(
+                  height: app.space.y4,
+                ),
+                ListTile(
+                  tileColor: fieldContrastDark,
+                  onTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => AllFieldsScreen()));
+                  },
+                  leading: const Icon(
+                    CupertinoIcons.cloud_moon_fill,
+                    color: Colors.white,
+                  ),
+                  title: const Text("View Fields"),
+                ),
+                SizedBox(
+                  height: app.space.y4,
+                ),
+                ListTile(
+                  tileColor: fieldContrastDark,
+                  onTap: () {},
+                  leading: const Icon(
+                    Icons.people_alt_outlined,
+                    color: Colors.white,
+                  ),
+                  title: const Text("Find Investors"),
+                ),
+                SizedBox(
+                  height: app.space.y4,
+                ),
+                ListTile(
+                  tileColor: fieldContrastDark,
+                  onTap: () {},
+                  leading: const Icon(
+                    Icons.workspaces_outline,
+                    color: Colors.white,
+                  ),
+                  title: const Text("Find Farmers"),
+                ),
+                SizedBox(
+                  height: app.space.y4,
+                ),
+                ListTile(
+                  tileColor: fieldContrastDark,
+                  onTap: () {},
+                  leading: const Icon(
+                    Icons.question_answer_outlined,
+                    color: Colors.white,
+                  ),
+                  title: const Text("Answer my Questions"),
+                ),
+                SizedBox(
+                  height: app.space.y4,
+                ),
+                ListTile(
+                  tileColor: fieldContrastDark,
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => MapsScreen()),
+                    );
+                  },
+                  leading: const Icon(
+                    CupertinoIcons.map_pin,
+                    color: Colors.white,
+                  ),
+                  title: const Text("Maps"),
+                ),
+                SizedBox(
+                  height: app.space.y4,
+                ),
+                ListTile(
+                  tileColor: fieldContrastDark,
+                  onTap: () async {
+                    BlocProvider.of<UserBloc>(context).add(UserLogout());
+                  },
+                  leading: const Icon(
+                    Icons.logout,
+                    color: Colors.white,
+                  ),
+                  title: const Text("Log out?"),
+                ),
+                SizedBox(height: app.space.y3),
+                const Divider(),
+                SizedBox(height: app.space.y3),
+                DropdownButton<String>(
+                    underline: null,
+                    dropdownColor: fieldContrastDark,
+                    iconSize: 20,
+                    isExpanded: true,
+                    value: value,
+                    items: dropdownItems.map(buildMenuItem).toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        this.value = value;
+                      });
+                    }),
+              ],
+            ),
+          ),
+        ),
+        appBar: AppBar(
+          toolbarHeight: AppConstants.toolbarHeighty1,
+          elevation: 0,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              Text("Hey there!"),
+              CircleAvatar(
+                radius: 20,
+                foregroundImage: AssetImage('assets/images/dp.jpeg'),
+              ),
+            ],
+          ),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const YourLocationTile(),
+                SizedBox(height: app.space.y2),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Fields Around you", style: app.text.h2),
+                    GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (_) => AllFieldsScreen()));
                       },
-                      leading: const Icon(
-                        CupertinoIcons.cloud_moon_fill,
-                        color: Colors.white,
+                      child: Row(
+                        children: [
+                          Text("Explore ", style: app.text.t2),
+                          const Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            size: 12,
+                          )
+                        ],
                       ),
-                      title: const Text("View Fields"),
                     ),
-                    SizedBox(
-                      height: app.space.y4,
-                    ),
-                    ListTile(
-                      tileColor: fieldContrastDark,
-                      onTap: () {},
-                      leading: const Icon(
-                        Icons.people_alt_outlined,
-                        color: Colors.white,
-                      ),
-                      title: const Text("Find Investors"),
-                    ),
-                    SizedBox(
-                      height: app.space.y4,
-                    ),
-                    ListTile(
-                      tileColor: fieldContrastDark,
-                      onTap: () {},
-                      leading: const Icon(
-                        Icons.workspaces_outline,
-                        color: Colors.white,
-                      ),
-                      title: const Text("Find Farmers"),
-                    ),
-                    SizedBox(
-                      height: app.space.y4,
-                    ),
-                    ListTile(
-                      tileColor: fieldContrastDark,
-                      onTap: () {},
-                      leading: const Icon(
-                        Icons.question_answer_outlined,
-                        color: Colors.white,
-                      ),
-                      title: const Text("Answer my Questions"),
-                    ),
-                    SizedBox(
-                      height: app.space.y4,
-                    ),
-                    ListTile(
-                      tileColor: fieldContrastDark,
-                      onTap: () {
-                        Navigator.of(context).pop();
-                        Navigator.of(context).push(
-                          MaterialPageRoute(builder: (_) => MapsScreen()),
-                        );
-                      },
-                      leading: const Icon(
-                        CupertinoIcons.map_pin,
-                        color: Colors.white,
-                      ),
-                      title: const Text("Maps"),
-                    ),
-                    SizedBox(
-                      height: app.space.y4,
-                    ),
-                    ListTile(
-                      tileColor: fieldContrastDark,
-                      onTap: () async {
-                        BlocProvider.of<UserBloc>(context).add(UserLogout());
-                      },
-                      leading: const Icon(
-                        Icons.logout,
-                        color: Colors.white,
-                      ),
-                      title: const Text("Log out?"),
-                    ),
-                    SizedBox(height: app.space.y3),
-                    const Divider(),
-                    SizedBox(height: app.space.y3),
-                    DropdownButton<String>(
-                        underline: null,
-                        dropdownColor: fieldContrastDark,
-                        iconSize: 20,
-                        isExpanded: true,
-                        value: value,
-                        items: dropdownItems.map(buildMenuItem).toList(),
-                        onChanged: (value) {
-                          setState(() {
-                            this.value = value;
-                          });
-                        }),
                   ],
                 ),
-              ),
-            ),
-            appBar: AppBar(
-              toolbarHeight: AppConstants.toolbarHeighty1,
-              elevation: 0,
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text("Hey there!"),
-                  CircleAvatar(
-                    radius: 20,
-                    foregroundImage: AssetImage('assets/images/dp.jpeg'),
-                  ),
-                ],
-              ),
-            ),
-            body: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                SizedBox(height: app.space.y4),
+                BlocBuilder<FieldsBloc, FieldsState>(
+                    builder: (context, fieldState) {
+                  if (fieldState.fetchFieldsState is FetchFieldsLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (fieldState.fetchFieldsState
+                      is FetchFieldsSuccess) {
+                    return SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Wrap(
+                        spacing: app.space.x2,
+                        children: List.generate(
+                          fieldState.fetchFieldsState!.data!.length < 3
+                              ? fieldState.fetchFieldsState!.data!.length
+                              : 3,
+                          (index) => FieldCard(
+                              onPressed: () {},
+                              field: fieldState.fetchFieldsState!.data![index]),
+                        ),
+                      ),
+                    );
+                  } else {
+                    return const SizedBox();
+                  }
+                }),
+                SizedBox(height: app.space.y2),
+                Text("Global Village", style: app.text.h2),
+                SizedBox(height: app.space.y4),
+                const GlobalVillageCard(),
+                SizedBox(height: app.space.y2),
+                Column(
                   children: [
-                    const YourLocationTile(),
-                    SizedBox(height: app.space.y2),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Fields Around you", style: app.text.h2),
+                        Text("News", style: app.text.h2),
                         GestureDetector(
                           onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(builder: (_) => AllFieldsScreen())
-                            );
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (_) => const NewsScreen()));
                           },
                           child: Row(
                             children: [
-                              Text("Explore ", style: app.text.t2),
+                              Text("See More ", style: app.text.t2),
                               const Icon(
                                 Icons.arrow_forward_ios_rounded,
                                 size: 12,
@@ -255,91 +310,36 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                     SizedBox(height: app.space.y4),
-                    BlocBuilder<FieldsBloc, FieldsState>(
-                        builder: (context, fieldState) {
-                      if (fieldState.fetchFieldsState is FetchFieldsLoading) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      } else if (fieldState.fetchFieldsState
-                          is FetchFieldsSuccess) {
-                        return SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Wrap(
-                            spacing: app.space.x2,
-                            children: List.generate(
-                              fieldState.fetchFieldsState!.data!.length < 3? fieldState.fetchFieldsState!.data!.length : 3,
-                              (index) => FieldCard(
-                                  onPressed: () {},
-                                  field: fieldState.fetchFieldsState!.data![index]),
-                            ),
-                          ),
-                        );
-                      } else {
-                        return const SizedBox();
-                      }
-                    }),
-                    SizedBox(height: app.space.y2),
-                    Text("Global Village", style: app.text.h2),
-                    SizedBox(height: app.space.y4),
-                    const GlobalVillageCard(),
-                    SizedBox(height: app.space.y2),
-                    Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("News", style: app.text.h2),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(builder: (_) => const NewsScreen())
-                                );
-                              },
-                              child: Row(
-                                children: [
-                                  Text("See More ", style: app.text.t2),
-                                  const Icon(
-                                    Icons.arrow_forward_ios_rounded,
-                                    size: 12,
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: app.space.y4),
-                        BlocBuilder<NewsBloc, NewsState>(
-                          builder: (context, newsState) {
-                            if (newsState is NewsFetchLoading) {
-                              return const Center(
-                                child: CircularProgressIndicator(),
-                              );
-                            } else if (newsState is NewsFetchSuccess) {
-                              return ListView.separated(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemCount: 3,
-                                itemBuilder: (context, index) {
-                                  return NewsCard(
-                                      article: newsState.data![index]);
-                                },
-                                separatorBuilder: (context, index) {
-                                  return SizedBox(height: app.space.y4);
-                                },
-                              );
-                            } else {
-                              return const SizedBox();
-                            }
-                          },
-                        ),
-                      ],
+                    BlocBuilder<NewsBloc, NewsState>(
+                      builder: (context, newsState) {
+                        if (newsState is NewsFetchLoading) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else if (newsState is NewsFetchSuccess) {
+                          return ListView.separated(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: 3,
+                            itemBuilder: (context, index) {
+                              return NewsCard(article: newsState.data![index]);
+                            },
+                            separatorBuilder: (context, index) {
+                              return SizedBox(height: app.space.y4);
+                            },
+                          );
+                        } else {
+                          return const SizedBox();
+                        }
+                      },
                     ),
                   ],
                 ),
-              ),
+              ],
             ),
           ),
-        );
+        ),
+      ),
+    );
   }
 }
