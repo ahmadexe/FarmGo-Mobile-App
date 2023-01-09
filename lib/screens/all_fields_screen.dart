@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../configs/defined_colors.dart';
-import '../models/field.dart';
-// import '../utils/dummy_data.dart';
 
 class AllFieldsScreen extends StatelessWidget {
   AllFieldsScreen({super.key});
@@ -36,7 +34,6 @@ class AllFieldsScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: BlocBuilder<FieldsBloc, FieldsState>(builder: (context, state) {
-        print(state.fetchFieldsState!.data!.length);
         return Padding(
           padding: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
