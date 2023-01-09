@@ -11,7 +11,9 @@ import '../models/field.dart';
 class MapData extends StatefulWidget {
   final List<Field> fields;
   final Function onControllerInitialised;
-  const MapData({required this.fields, required this.onControllerInitialised, Key? key}) : super(key: key);
+  const MapData(
+      {required this.fields, required this.onControllerInitialised, Key? key})
+      : super(key: key);
 
   @override
   State<MapData> createState() => MapDataState();
@@ -43,7 +45,8 @@ class MapDataState extends State<MapData> {
         child: GoogleMap(
           mapType: MapType.normal,
           markers: fieldMarkers,
-          initialCameraPosition: widget.fields.isEmpty? _kGooglePlex : getInitCameraPosition(),
+          initialCameraPosition:
+              widget.fields.isEmpty ? _kGooglePlex : getInitCameraPosition(),
           onMapCreated: (GoogleMapController controller) {
             _controller.complete(controller);
             widget.onControllerInitialised(_controller);
@@ -75,5 +78,4 @@ class MapDataState extends State<MapData> {
       zoom: 14.4746,
     );
   }
-
 }
