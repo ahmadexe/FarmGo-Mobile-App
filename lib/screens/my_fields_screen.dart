@@ -68,7 +68,9 @@ class MyFieldsScreen extends StatelessWidget {
                         ),
                       ),
                 SizedBox(height: app.space.y3),
-                state.fetchFieldsState!.data!.isEmpty
+                state.fetchFieldsState!.data!.where((element) {
+                  return element.ownerId == BlocProvider.of<UserBloc>(context).state.data!.userId;
+                }).toList().isEmpty
                     ? Center(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

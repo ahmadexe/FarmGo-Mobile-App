@@ -18,19 +18,15 @@ class UserDataProvider {
       );
       if (credentials.user != null) {
         String collection = isInvestor ? 'investors' : 'farmers';
-        if (isInvestor) {
-          await _firestore
-              .collection(collection)
-              .doc(credentials.user!.uid)
-              .set({
-            'username': username,
-            'contact': contact,
-            'name': name,
-            'email': email,
-            'userId': credentials.user!.uid,
-            'imgUrl': AppConstants.defaultProfileImgUrl,
-          });
-        }
+        await _firestore.collection(collection).doc(credentials.user!.uid).set({
+          'username': username,
+          'contact': contact,
+          'name': name,
+          'email': email,
+          'userId': credentials.user!.uid,
+          'imgUrl': AppConstants.defaultProfileImgUrl,
+        });
+
         return AppConstants.success;
       }
     } on FirebaseAuthException catch (e) {
