@@ -6,7 +6,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../configs/defined_colors.dart';
 import '../models/field.dart';
 
 class MapData extends StatefulWidget {
@@ -34,12 +33,6 @@ class MapDataState extends State<MapData> {
     target: LatLng(37.42796133580664, -122.085749655962),
     zoom: 14.4746,
   );
-
-  static const CameraPosition _kLake = CameraPosition(
-      bearing: 210.8334901395799,
-      target: LatLng(33.651592, 73.156456),
-      tilt: 70.440717697143555,
-      zoom: 19.151926040649414);
 
   @override
   Widget build(BuildContext context) {

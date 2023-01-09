@@ -168,7 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onTap: () {
                     Navigator.of(context).pop();
                     Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => MapsScreen()),
+                      MaterialPageRoute(builder: (_) => const MapsScreen()),
                     );
                   },
                   leading: const Icon(

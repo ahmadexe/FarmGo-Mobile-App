@@ -14,7 +14,7 @@ import '../widgets/map_data.dart';
 import '../widgets/map_tabs.dart';
 
 class MapsScreen extends StatefulWidget {
-  MapsScreen({super.key});
+  const MapsScreen({super.key});
 
   @override
   State<MapsScreen> createState() => _MapsScreenState();
