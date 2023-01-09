@@ -1,20 +1,29 @@
+import 'dart:async';
+
 import 'package:farmgo/blocs/fields%20bloc/bloc/fields_bloc.dart';
 import 'package:farmgo/providers/app_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../configs/defined_colors.dart';
 import '../models/field.dart';
-import '../utils/dummy_data.dart';
 import '../widgets/field_card.dart';
 import '../widgets/map_data.dart';
 import '../widgets/map_tabs.dart';
 
-class MapsScreen extends StatelessWidget {
+class MapsScreen extends StatefulWidget {
   MapsScreen({super.key});
 
+  @override
+  State<MapsScreen> createState() => _MapsScreenState();
+}
+
+class _MapsScreenState extends State<MapsScreen> {
   final TextEditingController _fieldController = TextEditingController();
+
+  Completer<GoogleMapController>? localController;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +53,14 @@ class MapsScreen extends StatelessWidget {
                 ),
                 child: Stack(
                   children: [
-                    const MapData(),
+                    MapData(
+                      fields: fields,
+                      onControllerInitialised: (controller) {
+                        setState(() {
+                          localController = controller;
+                        });
+                      },
+                    ),
                     Positioned(
                       top: 10,
                       left: 10,
@@ -115,7 +131,9 @@ class MapsScreen extends StatelessWidget {
                       children: List.generate(
                         fields.length,
                         (index) =>
-                            FieldCard(onPressed: () {}, field: fields[index]),
+                            FieldCard(onPressed: () {
+                              gotoField(fields[index]);
+                            }, field: fields[index]),
                       ),
                     ),
                   ),
@@ -130,5 +148,17 @@ class MapsScreen extends StatelessWidget {
         child: MapTabs(),
       ),
     );
+  }
+
+  gotoField(Field field) async {
+    CameraPosition position = CameraPosition(
+        bearing: 192.8334901395799,
+        target: LatLng(field.latitude, field.longitude),
+        tilt: 59.440717697143555,
+        zoom: 19.151926040649414);
+    if (localController != null) {
+      final GoogleMapController controller = await localController!.future;
+      controller.animateCamera(CameraUpdate.newCameraPosition(position));
+    }
   }
 }

@@ -7,15 +7,26 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../configs/defined_colors.dart';
+import '../models/field.dart';
 
 class MapData extends StatefulWidget {
-  const MapData({Key? key}) : super(key: key);
+  final List<Field> fields;
+  final Function onControllerInitialised;
+  const MapData({required this.fields, required this.onControllerInitialised, Key? key}) : super(key: key);
 
   @override
   State<MapData> createState() => MapDataState();
 }
 
 class MapDataState extends State<MapData> {
+  Set<Marker> fieldMarkers = {};
+
+  @override
+  initState() {
+    super.initState();
+    getMarkers();
+  }
+
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
 
@@ -38,9 +49,11 @@ class MapDataState extends State<MapData> {
         borderRadius: BorderRadius.all(Radius.circular(app.radius.lightCurve)),
         child: GoogleMap(
           mapType: MapType.normal,
-          initialCameraPosition: _kGooglePlex,
+          markers: fieldMarkers,
+          initialCameraPosition: widget.fields.isEmpty? _kGooglePlex : getInitCameraPosition(),
           onMapCreated: (GoogleMapController controller) {
             _controller.complete(controller);
+            widget.onControllerInitialised(_controller);
           },
           gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
             Factory<OneSequenceGestureRecognizer>(
@@ -49,23 +62,25 @@ class MapDataState extends State<MapData> {
           },
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        backgroundColor: fieldContrastDark,
-        onPressed: _goToTheLake,
-        label: Text(
-          'To the lake!',
-          style: app.text.t2.copyWith(color: textColorGrey),
-        ),
-        icon: const Icon(
-          Icons.directions_boat,
-          color: Colors.white,
-        ),
-      ),
     );
   }
 
-  Future<void> _goToTheLake() async {
-    final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
+  getMarkers() {
+    for (var element in widget.fields) {
+      Marker marker = Marker(
+        infoWindow: InfoWindow(title: element.fieldName),
+        position: LatLng(element.latitude, element.longitude),
+        markerId: MarkerId(element.id),
+      );
+      fieldMarkers.add(marker);
+    }
   }
+
+  getInitCameraPosition() {
+    return CameraPosition(
+      target: LatLng(widget.fields[0].latitude, widget.fields[0].longitude),
+      zoom: 14.4746,
+    );
+  }
+
 }
