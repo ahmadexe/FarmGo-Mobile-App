@@ -1,7 +1,7 @@
 part of 'global_village_card.dart';
 
 class _GVTiles extends StatelessWidget {
-  final bool isBot; 
+  final bool isBot;
   const _GVTiles({required this.isBot});
 
   @override
@@ -19,15 +19,17 @@ class _GVTiles extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: SvgPicture.asset(
-                  isBot? 'assets/svgs/bot.svg' : 'assets/svgs/channels.svg',
+                  isBot ? 'assets/svgs/bot.svg' : 'assets/svgs/channels.svg',
                   height: 60.h,
                   width: 60.h,
                 ),
               ),
-              Expanded(child: Text(isBot? "Farmer Bot" : "Channels", style: app.text.t1b)),
+              Expanded(
+                  child: Text(isBot ? "Farmer Bot" : "Channels",
+                      style: app.text.t1b)),
             ],
-          )
-        )
+          ),
+        ),
       ),
     );
   }

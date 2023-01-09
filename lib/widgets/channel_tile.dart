@@ -6,7 +6,7 @@ import '../providers/app_provider.dart';
 class ChannelTile extends StatelessWidget {
   final String name;
   final String description;
-  const ChannelTile({required this.description,required this.name, super.key});
+  const ChannelTile({required this.description, required this.name, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,8 @@ class ChannelTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(name, style: app.text.h3sb.copyWith(color: Colors.white)),
-                Text(description, style: app.text.t1.copyWith(color: textColorGrey)),
+                Text(description,
+                    style: app.text.t1.copyWith(color: textColorGrey)),
               ],
             ),
           ],

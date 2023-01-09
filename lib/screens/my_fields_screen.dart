@@ -101,9 +101,14 @@ class MyFieldsScreen extends StatelessWidget {
                     : Wrap(
                         spacing: 20,
                         runSpacing: 10,
-                        children: state.fetchFieldsState!.data!.where((element) => 
-                              element.ownerId == BlocProvider.of<UserBloc>(context).state.data!.userId
-                            ).toList()
+                        children: state.fetchFieldsState!.data!
+                            .where((element) =>
+                                element.ownerId ==
+                                BlocProvider.of<UserBloc>(context)
+                                    .state
+                                    .data!
+                                    .userId)
+                            .toList()
                             .map((e) => FieldCard(onPressed: () {}, field: e))
                             .toList(),
                       ),

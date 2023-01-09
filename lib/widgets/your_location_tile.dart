@@ -10,7 +10,7 @@ class YourLocationTile extends StatelessWidget {
   Widget build(BuildContext context) {
     AppProvider app = AppProvider.state(context);
     return GestureDetector(
-      onTap: (){},
+      onTap: () {},
       child: ClipRRect(
         borderRadius: const BorderRadius.all(Radius.circular(10)),
         child: Container(
@@ -38,7 +38,8 @@ class YourLocationTile extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("Your location",
-                        style: app.text.h3sb.copyWith(color: fieldContrastDark)),
+                        style:
+                            app.text.h3sb.copyWith(color: fieldContrastDark)),
                     Text(
                       "Hostel City, Lane 10, Street 5",
                       style: app.text.t1.copyWith(color: fieldContrastDark),

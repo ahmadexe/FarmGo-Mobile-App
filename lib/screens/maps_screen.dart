@@ -130,10 +130,11 @@ class _MapsScreenState extends State<MapsScreen> {
                       spacing: app.space.x2,
                       children: List.generate(
                         fields.length,
-                        (index) =>
-                            FieldCard(onPressed: () {
+                        (index) => FieldCard(
+                            onPressed: () {
                               gotoField(fields[index]);
-                            }, field: fields[index]),
+                            },
+                            field: fields[index]),
                       ),
                     ),
                   ),

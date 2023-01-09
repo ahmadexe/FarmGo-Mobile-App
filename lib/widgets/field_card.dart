@@ -20,7 +20,8 @@ class FieldCard extends StatelessWidget {
         width: 175.w,
         height: 190.h,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(app.radius.lightCurve)),
+          borderRadius:
+              BorderRadius.all(Radius.circular(app.radius.lightCurve)),
           color: fieldContrastDark,
           border: Border.all(
             color: customPrimaryColorDark,
