@@ -2,13 +2,13 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../configs/defined_colors.dart';
+import '../configs/defined_colors.dart';
 
-class _LineChart extends StatelessWidget {
-  const _LineChart({required this.isShowingMainData});
+
+class LineChartCustom extends StatelessWidget {
+  const LineChartCustom({super.key, required this.isShowingMainData});
 
   final bool isShowingMainData;
-
 
   @override
   Widget build(BuildContext context) {
@@ -353,7 +353,7 @@ class LineChartSample1State extends State<LineChartSample1> {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(right: 16, left: 6),
-                  child: _LineChart(isShowingMainData: isShowingMainData),
+                  child: LineChartCustom(isShowingMainData: isShowingMainData),
                 ),
               ),
               const SizedBox(
@@ -380,7 +380,7 @@ class LineChartSample1State extends State<LineChartSample1> {
                   ],
                 ),
                 // Space.y,
-                    SizedBox(height: 10.h),
+                SizedBox(height: 10.h),
                 Row(
                   children: [
                     const Text("Total Views"),

@@ -7,7 +7,7 @@ import '../screens/camera_screen.dart';
 import '../screens/home_screen.dart';
 import '../screens/profile_screen.dart';
 import '../screens/shop_screen.dart';
-import '../screens/weather/weather_screen.dart';
+import '../screens/weather_screen.dart';
 
 
 class MobileLayoutUtils extends StatefulWidget {
