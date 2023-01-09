@@ -2,6 +2,7 @@ import 'package:farmgo/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:string_validator/string_validator.dart';
 import '../configs/defined_colors.dart';
 import '../providers/app_provider.dart';
 import '../static/constants.dart';
@@ -55,8 +56,17 @@ class ProvideInfoScreen extends StatelessWidget {
                       ),
                     ),
                     validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(),
                       FormBuilderValidators.minLength(8),
-                      FormBuilderValidators.required()
+                      (value) {
+                        if (value == null) {
+                          return "Please provide a name";
+                        }
+                        else if (!isAlpha(value)) {
+                          return "Please provide a valid name";
+                        }
+                        return null;
+                      }
                     ]),
                   ),
                   SizedBox(height: app.space.y3),
@@ -87,7 +97,7 @@ class ProvideInfoScreen extends StatelessWidget {
                       ),
                     ),
                     validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.minLength(6),
+                      FormBuilderValidators.minLength(5),
                       FormBuilderValidators.required()
                     ]),
                   ),

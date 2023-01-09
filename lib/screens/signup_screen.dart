@@ -157,7 +157,19 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                       validator: FormBuilderValidators.compose([
                         FormBuilderValidators.minLength(6),
-                        FormBuilderValidators.required()
+                        FormBuilderValidators.required(),
+                        (value) {
+                          if (value == null) {
+                            return "Please provide a value";
+                          } else if (value !=
+                              _signupFormKey
+                                  .currentState!.fields['password']!.value
+                                  .toString()
+                                  .trim()) {
+                            return "Passwords do not match";
+                          }
+                          return null;
+                        }
                       ]),
                     ),
                     Row(
@@ -192,20 +204,23 @@ class _SignupScreenState extends State<SignupScreen> {
                           height: app.space.y1,
                           child: ElevatedButton(
                               onPressed: () {
-                                BlocProvider.of<UserBloc>(context).add(
-                                    UserSignup(
-                                        username: widget.username,
-                                        contact: widget.contact,
-                                        name: widget.fullname,
-                                        email: _signupFormKey.currentState!
-                                            .fields['email']!.value
-                                            .toString()
-                                            .trim(),
-                                        password: _signupFormKey.currentState!
-                                            .fields['password']!.value
-                                            .toString()
-                                            .trim(),
-                                        isInvestor: isInvestor));
+                                if (_signupFormKey.currentState!.validate()) {
+                                  BlocProvider.of<UserBloc>(context).add(
+                                      UserSignup(
+                                          username: widget.username,
+                                          contact: widget.contact,
+                                          name: widget.fullname,
+                                          email:
+                                              _signupFormKey.currentState!
+                                                  .fields['email']!.value
+                                                  .toString()
+                                                  .trim(),
+                                          password: _signupFormKey.currentState!
+                                              .fields['password']!.value
+                                              .toString()
+                                              .trim(),
+                                          isInvestor: isInvestor));
+                                }
                               },
                               child: const Text("Sign up")),
                         );
