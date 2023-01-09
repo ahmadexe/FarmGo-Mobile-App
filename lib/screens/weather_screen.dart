@@ -1,4 +1,3 @@
-import 'package:farmgo/configs/defined_colors.dart';
 import 'package:farmgo/providers/app_provider.dart';
 import 'package:farmgo/static/constants.dart';
 import 'package:farmgo/utils/weather_utils.dart';
