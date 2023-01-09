@@ -1,8 +1,11 @@
+import 'package:farmgo/blocs/fields%20bloc/bloc/fields_bloc.dart';
 import 'package:farmgo/providers/app_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../configs/defined_colors.dart';
+import '../models/field.dart';
 import '../utils/dummy_data.dart';
 import '../widgets/field_card.dart';
 import '../widgets/map_data.dart';
@@ -16,6 +19,8 @@ class MapsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppProvider app = AppProvider.state(context);
+    List<Field> fields =
+        BlocProvider.of<FieldsBloc>(context).state.fetchFieldsState!.data!;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Map"),
@@ -108,9 +113,9 @@ class MapsScreen extends StatelessWidget {
                     child: Wrap(
                       spacing: app.space.x2,
                       children: List.generate(
-                        3,
-                        (index) => FieldCard(
-                            onPressed: () {}, field: DummyData.fields[index]),
+                        fields.length,
+                        (index) =>
+                            FieldCard(onPressed: () {}, field: fields[index]),
                       ),
                     ),
                   ),
