@@ -40,7 +40,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
             child: CircularProgressIndicator(),
           );
         } else if (state is WeatherResponseSuccess) {
-          print(state.data.toString());
           return Center(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
@@ -58,6 +57,12 @@ class _WeatherScreenState extends State<WeatherScreen> {
                         fit: BoxFit.fill),
                   ),
                   SizedBox(height: app.space.y2),
+                  SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.3,
+                      width: MediaQuery.of(context).size.width,
+                      child: const LineChartCustom(isShowingMainData: true)),
+                  Expanded(child: Container()),
+                  SizedBox(height: app.space.y2),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -67,10 +72,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
                     ],
                   ),
                   SizedBox(height: app.space.y2),
-                  SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.3,
-                      width: MediaQuery.of(context).size.width,
-                      child: const LineChartCustom(isShowingMainData: true)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../configs/defined_colors.dart';
 
-
 class LineChartCustom extends StatelessWidget {
   const LineChartCustom({super.key, required this.isShowingMainData});
 
@@ -65,9 +64,9 @@ class LineChartCustom extends StatelessWidget {
       );
 
   List<LineChartBarData> get lineBarsData1 => [
-        lineChartBarData1_1,
         lineChartBarData1_2,
         lineChartBarData1_3,
+        lineChartBarData1_1,
       ];
 
   LineTouchData get lineTouchData2 => LineTouchData(
@@ -108,25 +107,25 @@ class LineChartCustom extends StatelessWidget {
     String text;
     switch (value.toInt()) {
       case 1:
-        text = '0';
+        text = '10° C';
         break;
       case 2:
-        text = '1k';
+        text = '11° C';
         break;
       case 3:
-        text = '5k';
+        text = '12° C';
         break;
       case 4:
-        text = '10k';
+        text = '13° C';
         break;
       case 5:
-        text = '20k';
+        text = '14° C';
         break;
       case 6:
-        text = '30k';
+        text = '15° C';
         break;
       case 7:
-        text = '40k';
+        text = '16° C';
         break;
       default:
         return Container();
@@ -150,26 +149,26 @@ class LineChartCustom extends StatelessWidget {
     Widget text;
     switch (value.toInt()) {
       case 1:
-        text = const Text('FEB 6', style: style);
+        text = const Text('5 AM', style: style);
         break;
       case 3:
-        text = const Text('FEB 7', style: style);
+        text = const Text('8 AM', style: style);
         break;
       case 5:
-        text = const Text('FEB 8', style: style);
+        text = const Text('10 AM', style: style);
         break;
 
       case 7:
-        text = const Text('FEB 9', style: style);
+        text = const Text('12 PM', style: style);
         break;
       case 9:
-        text = const Text('FEB 10', style: style);
+        text = const Text('2 PM', style: style);
         break;
       case 11:
-        text = const Text('FEB 11', style: style);
+        text = const Text('5 PM', style: style);
         break;
       case 13:
-        text = const Text('FEB 12', style: style);
+        text = const Text('10 PM', style: style);
         break;
       default:
         text = const Text('');
@@ -218,13 +217,19 @@ class LineChartCustom extends StatelessWidget {
         dotData: FlDotData(show: false),
         belowBarData: BarAreaData(show: false),
         spots: const [
+          FlSpot(0.7, 0.6),
           FlSpot(1, 1),
-          FlSpot(3, 1.5),
-          FlSpot(5, 1.4),
-          FlSpot(7, 3.4),
-          FlSpot(10, 2),
-          FlSpot(12, 2.2),
-          FlSpot(13, 1.8),
+          FlSpot(2, 1.5),
+          FlSpot(3, 2),
+          FlSpot(4, 3),
+          FlSpot(5, 3),
+          FlSpot(6, 3),
+          FlSpot(7, 3),
+          FlSpot(9, 2),
+          FlSpot(10, 1.8),
+          FlSpot(11, 1.4),
+          FlSpot(12, 1),
+          FlSpot(13, 0.9),
         ],
       );
 
