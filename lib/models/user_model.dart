@@ -38,7 +38,6 @@ class UserModel extends Equatable {
     ];
   }
 
-  
   static UserModel fromJson(DocumentSnapshot doc) {
     Map<String, dynamic> snap = (doc.data() as Map<String, dynamic>);
     return UserModel(userId: snap['userId'], name: snap['name'], email: snap['email'], imgUrl: snap['imgUrl'], isInvestor: false, isLoggedIn: false, userName: snap['username'], contact: snap['contact']);
