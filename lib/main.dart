@@ -54,6 +54,7 @@ class MyApp extends StatelessWidget {
                 builder: (context, child) {
                   return BaseWrapper(
                     child: MaterialApp(
+                      debugShowCheckedModeBanner: false,
                       theme: switchState.flag
                           ? appThemeData[AppThemes.dark]
                           : appThemeData[AppThemes.light],
