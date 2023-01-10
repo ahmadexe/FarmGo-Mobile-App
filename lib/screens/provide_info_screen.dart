@@ -61,8 +61,7 @@ class ProvideInfoScreen extends StatelessWidget {
                       (value) {
                         if (value == null) {
                           return "Please provide a name";
-                        }
-                        else if (!isAlpha(value)) {
+                        } else if (!value.split(' ').every((element) => isAlpha(element))) {
                           return "Please provide a valid name";
                         }
                         return null;
