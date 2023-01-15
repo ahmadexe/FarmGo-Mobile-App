@@ -48,6 +48,7 @@ class FieldsBloc extends Bloc<FieldsEvent, FieldsState> {
     try {
       // print(emit.isDone);
       // print(state.toString());
+      //! OLD Method
       //     List<Field> fields = [];
  
       //   repo.fetchAllFields().listen((eve) async {
@@ -62,11 +63,11 @@ class FieldsBloc extends Bloc<FieldsEvent, FieldsState> {
       //     fetchFieldsState: FetchFieldsSuccess(data: fields)
       //   )
       // );
-        
-        // });
-      List<Field> fields = [];
+      //   });
 
+      //! New method
       await emit.forEach(repo.fetchAllFields(), onData: (info) {
+        List<Field> fields = [];
         List json = info.docs;
         for (var element in json) {
           Field field = Field.fromMap(element.data());
