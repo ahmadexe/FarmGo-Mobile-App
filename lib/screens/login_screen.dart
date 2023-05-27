@@ -154,15 +154,16 @@ class _LoginScreenState extends State<LoginScreen> {
                                   if (_loginFormKey.currentState!.validate()) {
                                     BlocProvider.of<UserBloc>(context).add(
                                       UserLogin(
-                                          email: _loginFormKey.currentState!
-                                              .fields['email']!.value
-                                              .toString()
-                                              .trim(),
-                                          password: _loginFormKey.currentState!
-                                              .fields['password']!.value
-                                              .toString()
-                                              .trim(),
-                                          isInvestor: isInvestor),
+                                        email: _loginFormKey.currentState!
+                                            .fields['email']!.value
+                                            .toString()
+                                            .trim(),
+                                        password: _loginFormKey.currentState!
+                                            .fields['password']!.value
+                                            .toString()
+                                            .trim(),
+                                        isInvestor: isInvestor,
+                                      ),
                                     );
                                   }
                                 },
