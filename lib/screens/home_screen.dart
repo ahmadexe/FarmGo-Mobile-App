@@ -256,31 +256,33 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(height: app.space.y4),
                 BlocBuilder<FieldsBloc, FieldsState>(
-                    builder: (context, fieldState) {
-                  if (fieldState.fetchFieldsState is FetchFieldsLoading) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  } else if (fieldState.fetchFieldsState
-                      is FetchFieldsSuccess) {
-                    return SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Wrap(
-                        spacing: app.space.x2,
-                        children: List.generate(
-                          fieldState.fetchFieldsState!.data!.length < 3
-                              ? fieldState.fetchFieldsState!.data!.length
-                              : 3,
-                          (index) => FieldCard(
-                              onPressed: () {},
-                              field: fieldState.fetchFieldsState!.data![index]),
+                  builder: (context, fieldState) {
+                    if (fieldState.fetchFieldsState is FetchFieldsLoading) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else if (fieldState.fetchFieldsState
+                        is FetchFieldsSuccess) {
+                      return SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Wrap(
+                          spacing: app.space.x2,
+                          children: List.generate(
+                            fieldState.fetchFieldsState!.data!.length < 3
+                                ? fieldState.fetchFieldsState!.data!.length
+                                : 3,
+                            (index) => FieldCard(
+                                onPressed: () {},
+                                field:
+                                    fieldState.fetchFieldsState!.data![index]),
+                          ),
                         ),
-                      ),
-                    );
-                  } else {
-                    return const SizedBox();
-                  }
-                }),
+                      );
+                    } else {
+                      return const SizedBox();
+                    }
+                  },
+                ),
                 SizedBox(height: app.space.y2),
                 Text("Global Village", style: app.text.h2),
                 SizedBox(height: app.space.y4),
