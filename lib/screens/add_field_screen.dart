@@ -23,9 +23,11 @@ class AddFieldScreen extends StatelessWidget {
     return BlocListener<FieldsBloc, FieldsState>(
       listener: (context, state) {
         if (state.addFieldState is AddFieldFailed) {
-          SnackbarUtils.displaySnackbar(context, 'error', 'Can not add field right now. Please try later');
+          SnackbarUtils.displaySnackbar(context, 'error',
+              'Can not add field right now. Please try later');
         } else if (state.addFieldState is AddFieldSuccess) {
-          SnackbarUtils.displaySnackbar(context, 'not-error', 'Field has been added successfully!');
+          SnackbarUtils.displaySnackbar(
+              context, 'not-error', 'Field has been added successfully!');
         }
       },
       child: Scaffold(
@@ -293,8 +295,9 @@ class AddFieldScreen extends StatelessWidget {
                                             .trim(),
                                         city: _addFieldKey.currentState!.fields['city']!.value,
                                         id: DateTime.now().microsecondsSinceEpoch.toString());
-                                    BlocProvider.of<FieldsBloc>(context)
-                                        .add(AddField(field: field));
+                                    BlocProvider.of<FieldsBloc>(context).add(
+                                      AddField(field: field),
+                                    );
                                   }
                                 },
                                 child: const Text("Add a field"),
